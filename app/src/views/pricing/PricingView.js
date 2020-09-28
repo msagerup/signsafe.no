@@ -11,6 +11,7 @@ import {
   makeStyles
 } from '@material-ui/core';
 import Page from 'src/components/Page';
+import PricingCard from './PricingCard';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -19,7 +20,11 @@ const useStyles = makeStyles((theme) => ({
     height: '100%',
     paddingTop: 120,
     paddingBottom: 120
-  },
+	},
+	splashText: {
+		fontSize: '3rem',
+		color: theme.palette.text.primary
+	},
   product: {
     position: 'relative',
     padding: theme.spacing(5, 3),
@@ -61,20 +66,18 @@ const PricingView = () => {
       <Container maxWidth="sm">
         <Typography
           align="center"
-          variant="h1"
-          color="textPrimary"
+          className={classes.splashText}
         >
-          Start today. Boost up your services!
+          Menyr - Covid19 register.
         </Typography>
         <Box mt={3}>
           <Typography
-            align="center"
-            variant="subtitle1"
+            align="left"
+            variant="subtitle2"
             color="textSecondary"
           >
-            Welcome to the first platform created for freelancers and agencies
-            for showcasing and finding the best clinets in the market.
-            30% of our income goes into Whale Charity
+            Vi registrerer deres kunder digitalt. 
+						Lorem ipsum dolor, sit amet consectetur adipisicing elit. Necessitatibus distinctio natus quas architecto debitis dolore dignissimos reprehenderit quae doloribus consequatur.
           </Typography>
         </Box>
       </Container>
@@ -84,225 +87,40 @@ const PricingView = () => {
             container
             spacing={4}
           >
-            <Grid
-              item
-              md={4}
-              xs={12}
-            >
-              <Paper
-                className={classes.product}
-                elevation={1}
-              >
-                <img
-                  alt="Product"
-                  className={classes.productImage}
-                  src="/static/images/products/product_standard.svg"
-                />
-                <Typography
-                  component="h3"
-                  gutterBottom
-                  variant="overline"
-                  color="textSecondary"
-                >
-                  Standard
-                </Typography>
-                <div>
-                  <Typography
-                    component="span"
-                    display="inline"
-                    variant="h3"
-                    color="textPrimary"
-                  >
-                    $5
-                  </Typography>
-                  <Typography
-                    component="span"
-                    display="inline"
-                    variant="subtitle2"
-                    color="textSecondary"
-                  >
-                    /month
-                  </Typography>
-                </div>
-                <Typography
-                  variant="overline"
-                  color="textSecondary"
-                >
-                  Max 1 user
-                </Typography>
-                <Box my={2}>
-                  <Divider />
-                </Box>
-                <Typography
-                  variant="body2"
-                  color="textPrimary"
-                >
-                  20 proposals/month
-                  <br />
-                  10 templates
-                  <br />
-                  Analytics dashboard
-                  <br />
-                  Email alerts
-                </Typography>
-                <Box my={2}>
-                  <Divider />
-                </Box>
-                <Button
-                  variant="contained"
-                  fullWidth
-                  className={classes.chooseButton}
-                >
-                  Choose
-                </Button>
-              </Paper>
-            </Grid>
-            <Grid
-              item
-              md={4}
-              xs={12}
-            >
-              <Paper
-                className={clsx(classes.product, classes.recommendedProduct)}
-                elevation={1}
-              >
-                <img
-                  alt="Product"
-                  className={classes.productImage}
-                  src="/static/images/products/product_premium--outlined.svg"
-                />
-                <Typography
-                  component="h3"
-                  gutterBottom
-                  variant="overline"
-                  color="inherit"
-                >
-                  Premium
-                </Typography>
-                <div>
-                  <Typography
-                    component="span"
-                    display="inline"
-                    variant="h3"
-                    color="inherit"
-                  >
-                    $29
-                  </Typography>
-                  <Typography
-                    component="span"
-                    display="inline"
-                    variant="subtitle2"
-                    color="inherit"
-                  >
-                    /month
-                  </Typography>
-                </div>
-                <Typography
-                  variant="overline"
-                  color="inherit"
-                >
-                  Max 3 user
-                </Typography>
-                <Box my={2}>
-                  <Divider />
-                </Box>
-                <Typography
-                  variant="body2"
-                  color="inherit"
-                >
-                  20 proposals/month
-                  <br />
-                  10 templates
-                  <br />
-                  Analytics dashboard
-                  <br />
-                  Email alerts
-                </Typography>
-                <Box my={2}>
-                  <Divider />
-                </Box>
-                <Button
-                  variant="contained"
-                  fullWidth
-                  className={classes.chooseButton}
-                >
-                  Choose
-                </Button>
-              </Paper>
-            </Grid>
-            <Grid
-              item
-              md={4}
-              xs={12}
-            >
-              <Paper
-                className={classes.product}
-                elevation={1}
-              >
-                <img
-                  alt="Product"
-                  className={classes.productImage}
-                  src="/static/images/products/product_extended.svg"
-                />
-                <Typography
-                  component="h3"
-                  gutterBottom
-                  variant="overline"
-                  color="textSecondary"
-                >
-                  Extended
-                </Typography>
-                <div>
-                  <Typography
-                    component="span"
-                    display="inline"
-                    variant="h3"
-                    color="textPrimary"
-                  >
-                    $259
-                  </Typography>
-                  <Typography
-                    component="span"
-                    display="inline"
-                    variant="subtitle2"
-                    color="textSecondary"
-                  >
-                    /month
-                  </Typography>
-                </div>
-                <Typography
-                  variant="overline"
-                  color="textSecondary"
-                >
-                  Unlimited
-                </Typography>
-                <Box my={2}>
-                  <Divider />
-                </Box>
-                <Typography
-                  variant="body2"
-                  color="textPrimary"
-                >
-                  All from above
-                  <br />
-                  Unlimited 24/7 support
-                  <br />
-                  Personalised Page
-                  <br />
-                  Advertise your profile
-                </Typography>
-                <Box my={2}>
-                  <Divider />
-                </Box>
-                <Button
-                  variant="contained"
-                  fullWidth
-                  className={classes.chooseButton}
-                >
-                  Choose
-                </Button>
-              </Paper>
-            </Grid>
+						<PricingCard
+							cssRule = {classes.product}
+							imgUrl = '/static/images/products/product_standard.svg'
+							imgAlt = 'Product'
+							cardName= 'Covid19 Registrering'
+							price= '0.75KR'
+							subTitle= 'Ett registreings punkt.'
+							salePitch1 = 'Registrerings punkt ved disk'
+							salePitch2 = 'Innsikt i antall registrerte'
+							SalePitch3 = 'Sikker oppbevaring av person info'
+						/>
+						<PricingCard
+							cssRule = {clsx(classes.product, classes.recommendedProduct)}
+							textColor = ''
+							imgUrl = '/static/images/products/product_premium--outlined.svg'
+							imgAlt = 'Standard'
+							cardName= 'Covid19 Reg. +  Digitale menyer.'
+							price= '1.25KR'
+							subTitle= '+5 adresser'
+							salePitch1 = 'Digial Meny'
+							salePitch2 = 'Covid19 registrering modul.'
+							SalePitch3 = 'Sikker oppbevaring av person info'
+						/>
+						<PricingCard
+							cssRule = {classes.product}
+							imgUrl = '/static/images/products/product_extended.svg'
+							imgAlt = 'Product'
+							cardName= 'BTLR LITE'
+							price= '1.98KR'
+							subTitle= '10 + Adresser.'
+							salePitch1 = 'Digial Meny'
+							salePitch2 = 'Covid19 registrering modul.'
+							SalePitch3 = 'Motta bestillinger og betalinger, full oversikt over stock, m.m'
+						/>
           </Grid>
         </Container>
       </Box>

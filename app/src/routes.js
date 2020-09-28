@@ -15,6 +15,7 @@ import HomeView from 'src/views/home/HomeView';
 import LoadingScreen from 'src/components/LoadingScreen';
 import AuthGuard from 'src/components/AuthGuard';
 import GuestGuard from 'src/components/GuestGuard';
+import PricingView from './views/pricing/PricingView';
 
 export const renderRoutes = (routes = []) => (
   <Suspense fallback={<LoadingScreen />}>
@@ -103,78 +104,28 @@ const routes = [
       },
       {
         exact: true,
-        path: '/app/kanban',
-        component: lazy(() => import('src/views/kanban/KanbanView'))
-      },
-      {
-        exact: true,
-        path: '/app/management/customers',
-        component: lazy(() => import('src/views/customer/CustomerListView'))
-      },
-      {
-        exact: true,
-        path: '/app/management/customers/:customerId',
-        component: lazy(() => import('src/views/customer/CustomerDetailsView'))
-      },
-      {
-        exact: true,
-        path: '/app/management/customers/:customerId/edit',
-        component: lazy(() => import('src/views/customer/CustomerEditView'))
-      },
-      {
-        exact: true,
-        path: '/app/management/invoices',
-        component: lazy(() => import('src/views/invoice/InvoiceListView'))
-      },
-      {
-        exact: true,
-        path: '/app/management/invoices/:invoiceId',
-        component: lazy(() => import('src/views/invoice/InvoiceDetailsView'))
-      },
-      {
-        exact: true,
-        path: '/app/management/orders',
-        component: lazy(() => import('src/views/order/OrderListView'))
-      },
-      {
-        exact: true,
-        path: '/app/management/orders/:orderId',
-        component: lazy(() => import('src/views/order/OrderDetailsView'))
-      },
-      {
-        exact: true,
-        path: '/app/management/products',
-        component: lazy(() => import('src/views/product/ProductListView'))
-      },
-      {
-        exact: true,
-        path: '/app/management/products/create',
-        component: lazy(() => import('src/views/product/ProductCreateView'))
-      },
-      {
-        exact: true,
         path: '/app/management',
         component: () => <Redirect to="/app/management/customers" />
       },
       {
         exact: true,
         path: '/app/projects/overview',
-        component: lazy(() => import('src/views/project/OverviewView'))
+        component: lazy(() => import('src/views/covidReg/OverviewView'))
       },
       {
         exact: true,
         path: '/app/projects/browse',
-        component: lazy(() => import('src/views/project/ProjectBrowseView'))
+        component: lazy(() => import('src/views/covidReg/ProjectBrowseView'))
       },
       {
         exact: true,
         path: '/app/projects/create',
-        component: lazy(() => import('src/views/project/ProjectCreateView'))
+        component: lazy(() => import('src/views/covidReg/ProjectCreateView'))
       },
       {
         exact: true,
         path: '/app/projects/:id',
-        component: lazy(() => import('src/views/project/ProjectDetailsView'))
+        component: lazy(() => import('src/views/covidReg/ProjectDetailsView'))
       },
       {
         exact: true,
@@ -195,21 +146,6 @@ const routes = [
         exact: true,
         path: '/app/reports',
         component: () => <Redirect to="/app/reports/dashboard" />
-      },
-      {
-        exact: true,
-        path: '/app/social/feed',
-        component: lazy(() => import('src/views/social/FeedView'))
-      },
-      {
-        exact: true,
-        path: '/app/social/profile',
-        component: lazy(() => import('src/views/social/ProfileView'))
-      },
-      {
-        exact: true,
-        path: '/app/social',
-        component: () => <Redirect to="/app/social/profile" />
       },
       {
         exact: true,
@@ -307,7 +243,7 @@ const routes = [
       {
         exact: true,
         path: '/',
-        component: HomeView
+        component: PricingView
       },
       {
         exact: true,
