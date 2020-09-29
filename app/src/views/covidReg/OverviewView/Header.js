@@ -44,34 +44,19 @@ const Header = ({ className, ...rest }) => {
           xs={12}
         >
           <Typography
-            variant="overline"
-            color="textSecondary"
-          >
-            Overview
-          </Typography>
-          <Typography
-            variant="h3"
+            variant="h1"
             color="textPrimary"
           >
-            Good Morning,
+            God morgen,
             {' '}
             {user.name}
           </Typography>
           <Typography
-            variant="subtitle1"
+            variant="h4"
             color="textPrimary"
           >
-            Here’s what’s happening with your projects today
+            Takk for at du tar turen innom Bjølsen Hamburgers
           </Typography>
-          <Box mt={2}>
-            <Button
-              className={classes.action}
-              variant="contained"
-              startIcon={<BarChartIcon />}
-            >
-              View summary
-            </Button>
-          </Box>
         </Grid>
         <Hidden smDown>
           <Grid

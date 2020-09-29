@@ -5,7 +5,6 @@ import React, {
 } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import numeral from 'numeral';
 import {
   Box,
   Card,
@@ -15,7 +14,8 @@ import {
 } from '@material-ui/core';
 import axios from 'src/utils/axios';
 import useIsMountedRef from 'src/hooks/useIsMountedRef';
-import Label from 'src/components/Label';
+import Form from './Form';
+
 
 const useStyles = makeStyles((theme) => ({
   root: {},
@@ -41,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const Statistics = ({ className, ...rest }) => {
+const CovidForm = ({ className, ...rest }) => {
   const classes = useStyles();
   const isMountedRef = useIsMountedRef();
   const [statistics, setStatistics] = useState(null);
@@ -74,33 +74,23 @@ const Statistics = ({ className, ...rest }) => {
       <Grid
         alignItems="center"
         container
-        justify="space-between"
+				justify="center"
       >
         <Grid
           className={classes.item}
-          item
-          md={3}
+					item
+					lg={8}
+          md={8}
           sm={6}
           xs={12}
         >
-          <Typography
-            variant="h2"
-            color="textPrimary"
-          >
-            {numeral(statistics.nextPayout).format('$0,0.00')}
-          </Typography>
-          <Typography
-            className={classes.overline}
-            variant="overline"
-            color="textSecondary"
-          >
-            Next payout
-          </Typography>
+          <Form />
         </Grid>
         <Grid
           className={classes.item}
-          item
-          md={3}
+					item
+					lg={4}
+          md={4}
           sm={6}
           xs={12}
         >
@@ -108,78 +98,24 @@ const Statistics = ({ className, ...rest }) => {
             variant="h2"
             color="textPrimary"
           >
-            {numeral(statistics.totalIncome).format('$0,0.00')}
+            feedback paa skjema
           </Typography>
-          <Typography
-            className={classes.overline}
-            variant="overline"
-            color="textSecondary"
-          >
-            Total income
-          </Typography>
-        </Grid>
-        <Grid
-          className={classes.item}
-          item
-          md={3}
-          sm={6}
-          xs={12}
-        >
-          <Typography
-            variant="h2"
-            color="textPrimary"
-          >
-            {statistics.visitorsToday}
-          </Typography>
-          <Typography
+          {/* <Typography
             className={classes.overline}
             variant="overline"
             color="textSecondary"
           >
             Today&apos;s Visitors
-          </Typography>
+          </Typography> */}
         </Grid>
-        <Grid
-          className={classes.item}
-          item
-          md={3}
-          sm={6}
-          xs={12}
-        >
-          <Box
-            display="flex"
-            alignItems="center"
-            justifyContent="center"
-          >
-            <Typography
-              component="span"
-              variant="h2"
-              color="textPrimary"
-            >
-              {statistics.watchingNow}
-            </Typography>
-            <Label
-              className={classes.label}
-              color="primary"
-            >
-              Live
-            </Label>
-          </Box>
-          <Typography
-            className={classes.overline}
-            variant="overline"
-            color="textSecondary"
-          >
-            Watching now
-          </Typography>
-        </Grid>
+        
       </Grid>
     </Card>
   );
 };
 
-Statistics.propTypes = {
+CovidForm.propTypes = {
   className: PropTypes.string
 };
 
-export default Statistics;
+export default CovidForm;

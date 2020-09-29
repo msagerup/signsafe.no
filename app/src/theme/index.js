@@ -85,10 +85,10 @@ const themesOptions = [
         paper: '#282C34'
       },
       primary: {
-        main: '#8a85ff'
+        main: '#5F94BE'
       },
       secondary: {
-        main: '#8a85ff'
+        main: '#5F94BE'
       },
       text: {
         primary: '#e6e5e8',

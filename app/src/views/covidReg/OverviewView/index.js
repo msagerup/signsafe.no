@@ -6,9 +6,8 @@ import {
 } from '@material-ui/core';
 import Page from 'src/components/Page';
 import Header from './Header';
-import Statistics from './Statistics';
-import Notifications from './Notifications';
-import Projects from './Projects';
+import CovidForm from './CovidForm';
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -29,13 +28,12 @@ const OverviewView = () => {
       <Container maxWidth="lg">
         <Header />
         <Box mt={3}>
-          <Statistics />
+          <CovidForm />
         </Box>
         <Box mt={6}>
-          <Notifications />
+          {/* <Notifications /> */}
         </Box>
         <Box mt={6}>
-          <Projects />
         </Box>
       </Container>
     </Page>

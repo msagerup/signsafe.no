@@ -109,7 +109,7 @@ const routes = [
       },
       {
         exact: true,
-        path: '/app/projects/overview',
+        path: '/app/covidreg',
         component: lazy(() => import('src/views/covidReg/OverviewView'))
       },
       {
@@ -150,7 +150,7 @@ const routes = [
       {
         exact: true,
         path: '/app',
-        component: () => <Redirect to="/app/projects/browse" />
+        component: () => <Redirect to="/app/covidreg" />
       },
       {
         component: () => <Redirect to="/404" />

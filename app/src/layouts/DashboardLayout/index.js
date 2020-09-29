@@ -18,7 +18,8 @@ const useStyles = makeStyles((theme) => ({
     overflow: 'hidden',
     paddingTop: 64,
     [theme.breakpoints.up('lg')]: {
-      paddingLeft: 256
+			// with left menu =256, no menu = 0
+      paddingLeft: 0
     }
   },
   contentContainer: {
@@ -40,10 +41,10 @@ const DashboardLayout = ({ children }) => {
   return (
     <div className={classes.root}>
       <TopBar onMobileNavOpen={() => setMobileNavOpen(true)} />
-      <NavBar
+      {/* <NavBar
         onMobileClose={() => setMobileNavOpen(false)}
         openMobile={isMobileNavOpen}
-      />
+      /> */}
       <div className={classes.wrapper}>
         <div className={classes.contentContainer}>
           <div className={classes.content}>
