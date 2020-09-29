@@ -38,20 +38,26 @@ exports.addUser = async (req, res) => {
 	} else if (!isEmail(newUser.email)) {
 			errors.email = 'Must be a valid email address';
 	}
-	// if (isEmpty(newUser.password)) errors.password = 'Must not be empty';
-	// if (newUser.password !== newUser.confirmPassword) errors.confirmPassword = 'Passwords must match.';
-	// if (isEmpty(newUser.companyName)) errors.companyName = 'Must not be empty';
+	if (isEmpty(newUser.password)) errors.password = 'Must not be empty';
+	if (newUser.password !== newUser.confirmPassword) errors.confirmPassword = 'Passwords must match.';
+	if (isEmpty(newUser.companyName)) errors.companyName = 'Must not be empty';
 	// If there is any error with the user input data, send the error object back.
 	if (Object.keys(errors).length > 0) {
 			return res.status(400).json(errors);
 	}
 
+	const propRef = db().doc(`/org/${newUser.companyName}`)
+	const doc = await propRef.get()
+	// Check if doc excists.
+	if(doc.exists) {
+		res.status(500).json({Org: `Business with name ${newUser.companyName} already exists!`})
+	} else {
+		res.send('not ther')
+	}
 
 
 	res.send(body)
 }
-
-
 
 exports.changer = async (req, res) => {
 	const body = req.body;
