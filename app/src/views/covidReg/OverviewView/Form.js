@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
+import {
+  useParams
+} from "react-router-dom";
 import * as Yup from 'yup';
 import { Formik } from 'formik';
+import axios from 'axios'
 import {
   Box,
   Button,
@@ -17,26 +21,48 @@ import {
   Typography
 } from '@material-ui/core';
 import { Alert } from '@material-ui/lab';
-import wait from 'src/utils/wait';
+
 
 const Form = () => {
-  const [isAlertVisible, setAlertVisible] = useState(true);
+  const [isAlertVisible, setAlertVisible] = useState(false);
+  let {id} = useParams()
+  console.log(id)
+
+  const sendForm = async (values) => {
+    console.log(values, 'verdier....')
+    const data = await axios.post(`http://localhost:5000/signsafe-62b14/europe-west1/api/register/${id}`, {
+      name: values.firstName,
+      phone: values.phone,
+      email: values.email
+    }).then((result => {
+      console.log(result)
+      return result
+    })).catch(err => {
+      return new Promise(err)
+    })
+    return data;
+    
+  
+    // .catch(function (error) {
+    //   console.log(error);
+    // });
+  }
 
   return (
     <Formik
       initialValues={{
-        email: 'johnnydoe@yahoo.com',
-        firstName: 'John',
-        lastName: 'Doe',
-        password: 'thisisasecuredpassword',
+        email: '',
+        phone: '',
+        firstName: '',
+        lastName: '',
         policy: false,
         submit: null
       }}
       validationSchema={Yup.object().shape({
-        email: Yup.string().email().required('Required'),
+        email: Yup.string().email().required('Please entere a valid e-mail'),
+        phone: Yup.number().required('Please enter your phone number'),
         firstName: Yup.string().required('Required'),
         lastName: Yup.string().required('Required'),
-        password: Yup.string().min(7, 'Must be at least 7 characters').max(255).required('Required'),
         policy: Yup.boolean().oneOf([true], 'This field must be checked')
       })}
       onSubmit={async (values, {
@@ -46,9 +72,7 @@ const Form = () => {
         setSubmitting
       }) => {
         try {
-          // NOTE: Make API request
-          await wait(1000);
-          resetForm();
+          await sendForm(values)
           setStatus({ success: true });
           setSubmitting(false);
         } catch (err) {
@@ -69,7 +93,7 @@ const Form = () => {
         values
       }) => (
         <Card>
-          <CardHeader title="Basic Form" />
+          <CardHeader title="SignSafe - Covid19" />
           <Divider />
           <CardContent>
             {isAlertVisible && (
@@ -99,7 +123,7 @@ const Form = () => {
                   <Grid
                     item
                     md={6}
-                    xs={12}
+                    xs={12} 
                   >
                     <TextField
                       error={Boolean(touched.firstName && errors.firstName)}
@@ -147,15 +171,15 @@ const Form = () => {
                 </Box>
                 <Box mt={2}>
                   <TextField
-                    error={Boolean(touched.password && errors.password)}
+                    error={Boolean(touched.phone && errors.phone)}
                     fullWidth
-                    helperText={touched.password && errors.password}
-                    label="Password"
-                    name="password"
+                    helperText={touched.phone && errors.phone}
+                    label="Phone number"
+                    name="phone"
                     onBlur={handleBlur}
                     onChange={handleChange}
-                    type="password"
-                    value={values.password}
+                    type="number"
+                    value={values.phone}
                     variant="outlined"
                   />
                 </Box>
@@ -199,7 +223,7 @@ const Form = () => {
                     type="submit"
                     variant="contained"
                   >
-                    Registrer besøk
+                    Registrer visit
                   </Button>
                 </Box>
               </form>

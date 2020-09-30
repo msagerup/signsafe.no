@@ -6,9 +6,9 @@ app.use(cors);
 
 // Import rutes
 
-const {addMessage, makeUppercase, helloWorld, changer, addUser } = require('./handlers/test')
+const {addMessage, makeUppercase, helloWorld, register, addUser } = require('./handlers/test')
 
-app.post('/test', changer)
+app.post('/register/:id', register)
 app.post('/newuser', addUser)
 
 

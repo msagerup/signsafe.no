@@ -49,7 +49,7 @@ const Header = ({ className, ...rest }) => {
           >
             God morgen,
             {' '}
-            {user.name}
+            {/* {user.name} */}
           </Typography>
           <Typography
             variant="h4"
