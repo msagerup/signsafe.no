@@ -79,36 +79,13 @@ const CovidForm = ({ className, ...rest }) => {
         <Grid
           className={classes.item}
 					item
-					lg={8}
-          md={8}
-          sm={6}
+					lg={12}
+          md={12}
+          sm={12}
           xs={12}
         >
           <Form />
-        </Grid>
-        <Grid
-          className={classes.item}
-					item
-					lg={4}
-          md={4}
-          sm={6}
-          xs={12}
-        >
-          <Typography
-            variant="h2"
-            color="textPrimary"
-          >
-            feedback paa skjema
-          </Typography>
-          {/* <Typography
-            className={classes.overline}
-            variant="overline"
-            color="textSecondary"
-          >
-            Today&apos;s Visitors
-          </Typography> */}
-        </Grid>
-        
+        </Grid>        
       </Grid>
     </Card>
   );

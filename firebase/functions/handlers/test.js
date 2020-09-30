@@ -71,19 +71,19 @@ exports.addUser = async (req, res) => {
 
 	}
 	// Valdidate data.
-	let errors = {};
-	if (isEmpty(newUser.email)) {
-			errors.email = 'Must not be empty';
-	} else if (!isEmail(newUser.email)) {
-			errors.email = 'Must be a valid email address';
-	}
-	if (isEmpty(newUser.password)) errors.password = 'Must not be empty';
-	if (newUser.password !== newUser.confirmPassword) errors.confirmPassword = 'Passwords must match.';
-	if (isEmpty(newUser.companyName)) errors.companyName = 'Must not be empty';
-	// If there is any error with the user input data, send the error object back.
-	if (Object.keys(errors).length > 0) {
-			return res.status(400).json(errors);
-	}
+	// let errors = {};
+	// if (isEmpty(newUser.email)) {
+	// 		errors.email = 'Must not be empty';
+	// } else if (!isEmail(newUser.email)) {
+	// 		errors.email = 'Must be a valid email address';
+	// }
+	// if (isEmpty(newUser.password)) errors.password = 'Must not be empty';
+	// if (newUser.password !== newUser.confirmPassword) errors.confirmPassword = 'Passwords must match.';
+	// if (isEmpty(newUser.companyName)) errors.companyName = 'Must not be empty';
+	// // If there is any error with the user input data, send the error object back.
+	// if (Object.keys(errors).length > 0) {
+	// 		return res.status(400).json(errors);
+	// }
 	let token,
     userId
 	db()
@@ -92,7 +92,7 @@ exports.addUser = async (req, res) => {
 	.then(doc => {
 		// Check if doc excists.
 		if(doc.exists) {
-			res.status(500).json({Org: `Business with name ${newUser.companyName} already exists!`})
+			return res.status(500).json({Org: `Business with name ${newUser.companyName} already exists!`})
 		} else {
 		// Create user   
 		return firebase.auth().createUserWithEmailAndPassword(newUser.email, newUser.password)
@@ -117,7 +117,7 @@ exports.addUser = async (req, res) => {
 		return db().doc(`/org/${newUser.companyName}`).set(userCred)
 	})
 	.then(() => {
-		res.status(200).json({message: 'Created new user', token: token})
+		return res.status(200).json({message: 'Created new user', token: token})
 	})
 	.catch(err => {
 		console.log(err)
@@ -132,6 +132,7 @@ exports.register = async (req, res) => {
 	const visitInfo = {
 		name: body.name,
 		email: 'msagerup@online.no',
+		phone: body.phone,
 		time_of_first_visit: new Date(),
 		orgName: orgId
 	}
@@ -165,10 +166,11 @@ exports.register = async (req, res) => {
 					.set(visitInfo)
 
 				}
+				return null
 			})
 
 			.then(data => {
-				res.status(200).json({messge: 'User reg.', ...visitInfo})
+				return res.status(200).json({messge: 'User reg.', visitInfo})
 			})
 			.catch(err => {
 				console.log(err)
@@ -177,7 +179,8 @@ exports.register = async (req, res) => {
 		} else {
 			res.status(500).json({error: 'Org finnes ikke'})
 		}
-	})
+		return null
+	}).catch(err => res.satus(500).json({error : err}))
 	
 	
 

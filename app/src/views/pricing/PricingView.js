@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom: 120
 	},
 	splashText: {
-		fontSize: '3rem',
+		fontSize: '2.5rem',
 		color: theme.palette.text.primary
 	},
   product: {
@@ -68,7 +68,7 @@ const PricingView = () => {
           align="center"
           className={classes.splashText}
         >
-          Menyr - Covid19 register.
+          SafeSign - Covid19 register.
         </Typography>
         <Box mt={3}>
           <Typography
@@ -92,8 +92,8 @@ const PricingView = () => {
 							imgUrl = '/static/images/products/product_standard.svg'
 							imgAlt = 'Product'
 							cardName= 'Covid19 Registrering'
-							price= '0.75KR'
-							subTitle= 'Ett registreings punkt.'
+							price= '145KR'
+							subTitle= 'En adresse.'
 							salePitch1 = 'Registrerings punkt ved disk'
 							salePitch2 = 'Innsikt i antall registrerte'
 							SalePitch3 = 'Sikker oppbevaring av person info'
@@ -104,7 +104,7 @@ const PricingView = () => {
 							imgUrl = '/static/images/products/product_premium--outlined.svg'
 							imgAlt = 'Standard'
 							cardName= 'Covid19 Reg. +  Digitale menyer.'
-							price= '1.25KR'
+							price= '235KR'
 							subTitle= '+5 adresser'
 							salePitch1 = 'Digial Meny'
 							salePitch2 = 'Covid19 registrering modul.'
@@ -115,10 +115,10 @@ const PricingView = () => {
 							imgUrl = '/static/images/products/product_extended.svg'
 							imgAlt = 'Product'
 							cardName= 'BTLR LITE'
-							price= '1.98KR'
+							price= '330KR'
 							subTitle= '10 + Adresser.'
 							salePitch1 = 'Digial Meny'
-							salePitch2 = 'Covid19 registrering modul.'
+							salePitch2 = 'Covid19 registrering modul og sikkert data lagring.'
 							SalePitch3 = 'Motta bestillinger og betalinger, full oversikt over stock, m.m'
 						/>
           </Grid>

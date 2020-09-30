@@ -25,19 +25,22 @@ import { Alert } from '@material-ui/lab';
 
 const Form = () => {
   const [isAlertVisible, setAlertVisible] = useState(false);
-  let {id} = useParams()
-  console.log(id)
+	let {id} = useParams()
+	const [response , setResponse] = useState({})
+
+	console.log(response, 'DETTE')
 
   const sendForm = async (values) => {
     console.log(values, 'verdier....')
-    const data = await axios.post(`http://localhost:5000/signsafe-62b14/europe-west1/api/register/${id}`, {
-      name: values.firstName,
+    const data = await axios.post(`https://europe-west1-signsafe-62b14.cloudfunctions.net/api/register/${id}`, {
+      name: values.firstName + ' ' + values.lastName,
       phone: values.phone,
       email: values.email
     }).then((result => {
-      console.log(result)
+			setResponse(result)
       return result
     })).catch(err => {
+			setResponse(err)
       return new Promise(err)
     })
     return data;
@@ -76,7 +79,6 @@ const Form = () => {
           setStatus({ success: true });
           setSubmitting(false);
         } catch (err) {
-          console.error(err);
           setStatus({ success: false });
           setErrors({ submit: err.message });
           setSubmitting(false);
@@ -92,6 +94,7 @@ const Form = () => {
         touched,
         values
       }) => (
+				<>
         <Card>
           <CardHeader title="SignSafe - Covid19" />
           <Divider />
@@ -230,9 +233,22 @@ const Form = () => {
             )}
           </CardContent>
         </Card>
+				<Card 
+				style={{marginTop: '30px', backgroundColor: 'limegreen', color: 'black'}}
+				>
+				{ response.status === 200 ? <CardHeader title={`Takk ${response.data.name} ditt besøk er registrert ved ${response.data.orgName}`} /> : ''}
+				</Card>
+				</>
       )}
     </Formik>
   );
 };
 
 export default Form;
+
+
+// TODO: 
+// 1. Legge til et secret ord , når man registrer seg, slik at man kan få spore tidligere besøk.
+// 2. Liste tidligere besoek i ny card under formen. faa dette fra firebase return naar man submitter
+// 3. Lage func på hvis det er funnet tidligere registreinger så vises en knapp som det står, treff. vis nå. 
+// man må da skrive inne det hemmelioge ordert for å vise treffene.  (modal?)

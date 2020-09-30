@@ -58,11 +58,7 @@ const TopBar = ({
             </SvgIcon>
           </IconButton>
         </Hidden>
-        <Hidden mdDown>
-          <RouterLink to="/">
-            <Logo />
-          </RouterLink>
-        </Hidden>
+        
         <Box
           ml={2}
           flexGrow={1}

@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import { useParams } from "react-router-dom";
 import {
   Box,
   Button,
@@ -16,7 +17,16 @@ const useStyles = makeStyles((theme) => ({
   root: {},
   action: {
     backgroundColor: theme.palette.common.white
-  },
+	},
+	splashText: {
+		fontSize: '2rem'
+	},
+
+	subText1 : {
+		marginTop: '30px',
+		fontSize: '1.5rem'
+	},
+
   image: {
     width: '100%',
     maxHeight: 400
@@ -25,7 +35,8 @@ const useStyles = makeStyles((theme) => ({
 
 const Header = ({ className, ...rest }) => {
   const classes = useStyles();
-  const { user } = useAuth();
+	const { user } = useAuth();
+	let {id} = useParams()
 
   return (
     <div
@@ -44,18 +55,24 @@ const Header = ({ className, ...rest }) => {
           xs={12}
         >
           <Typography
-            variant="h1"
+            className={classes.splashText}
             color="textPrimary"
           >
-            God morgen,
+            SafeSign - Covid19 Register.
             {' '}
-            {/* {user.name} */}
+            
           </Typography>
           <Typography
+            className = {classes.subText1}
+            color="textPrimary"
+          >
+            Velkommen til {id}
+          </Typography>
+					<Typography
             variant="h4"
             color="textPrimary"
           >
-            Takk for at du tar turen innom Bjølsen Hamburgers
+            Flott at du tar tiden til å regitrere deg.
           </Typography>
         </Grid>
         <Hidden smDown>
@@ -66,7 +83,7 @@ const Header = ({ className, ...rest }) => {
             <img
               alt="Cover"
               className={classes.image}
-              src="/static/images/undraw_growth_analytics_8btt.svg"
+              src="/static/images/takk.png"
             />
           </Grid>
         </Hidden>

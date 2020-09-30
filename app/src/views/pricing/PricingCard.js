@@ -90,7 +90,7 @@ const PricingCard = ({imgUrl, imgAlt, cardName, price, subTitle, salePitch1, sal
 					variant="subtitle2"
 					color="textSecondary"
 				>
-					 / registrering
+					 / mnd
 				</Typography>
 			</div>
 			<Typography
