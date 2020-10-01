@@ -15,6 +15,7 @@ import {
 import axios from 'src/utils/axios';
 import useIsMountedRef from 'src/hooks/useIsMountedRef';
 import Form from './Form';
+import CookiesNotification from '../../../components/CookiesNotification'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -67,6 +68,7 @@ const CovidForm = ({ className, ...rest }) => {
   }
 
   return (
+    <>
     <Card
       className={clsx(classes.root, className)}
       {...rest}
@@ -88,6 +90,8 @@ const CovidForm = ({ className, ...rest }) => {
         </Grid>        
       </Grid>
     </Card>
+      <CookiesNotification />
+    </>
   );
 };
 

@@ -46,7 +46,7 @@ const App = () => {
                 <GlobalStyles />
                 <ScrollReset />
                 <GoogleAnalytics />
-                <CookiesNotification />
+                {/* <CookiesNotification /> */}
                 {/* <SettingsNotification /> */}
                 {renderRoutes(routes)}
               </AuthProvider>

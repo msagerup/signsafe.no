@@ -163,6 +163,11 @@ const routes = [
     routes: [
       {
         exact: true,
+        path: '/docs/policy',
+        component: lazy(() => import('src/views/policy'))
+      },
+      {
+        exact: true,
         path: '/docs',
         component: () => <Redirect to="/docs/welcome" />
       },

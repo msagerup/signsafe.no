@@ -1,13 +1,12 @@
 import React from 'react';
-import { Link as RouterLink } from 'react-router-dom';
+import { useHistory, Link as RouterLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import {
   AppBar,
   Box,
-  Hidden,
-  IconButton,
   Toolbar,
+  Button,
   makeStyles,
   SvgIcon
 } from '@material-ui/core';
@@ -41,6 +40,7 @@ const TopBar = ({
   ...rest
 }) => {
   const classes = useStyles();
+  let history = useHistory();
 
   return (
     <AppBar
@@ -63,9 +63,14 @@ const TopBar = ({
           ml={2}
           flexGrow={1}
         />
-        <Search />
-        <Settings />
-        <Notifications />
+        <Button size="small"
+        onClick ={() => history.push('/')}
+        >
+          Om oss
+        </Button>
+        {/* <Search /> */}
+        {/* <Settings /> */}
+        {/* <Notifications /> */}
         <Box ml={2}>
         </Box>
       </Toolbar>

@@ -2,6 +2,8 @@ import React, {
   useState,
   useEffect
 } from 'react';
+import { useHistory, Link as RouterLink } from 'react-router-dom';
+
 import Cookies from 'js-cookie';
 import {
   Box,
@@ -59,18 +61,13 @@ const CookiesNotification = () => {
           variant="body1"
           color="inherit"
         >
-          We use Cookies to ensure that we give you the best experience on our
-          website. Read our
+          Dataene som oppgis til SignSafe vil kun bli brukt for registrering av besøk. Den lagres sikkert på serverne våre og vil bli slettet etter 10 dager. Du kan lese mer om vår personvernpolicy her.
           {' '}
-          <Link
-            component="a"
-            color="inherit"
-            underline="always"
-            href="https://devias.io/privacy-policy"
-            target="_blank"
+          <RouterLink
+            to='/docs/policy'
           >
             Privacy Policy
-          </Link>
+          </RouterLink>
           .
         </Typography>
         <Box
@@ -83,7 +80,7 @@ const CookiesNotification = () => {
             variant="contained"
             className={classes.action}
           >
-            I Agree
+            OK
           </Button>
         </Box>
       </div>

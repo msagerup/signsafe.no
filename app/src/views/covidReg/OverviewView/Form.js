@@ -26,11 +26,13 @@ import { Alert } from '@material-ui/lab';
 const Form = () => {
   const [isAlertVisible, setAlertVisible] = useState(false);
 	let {id} = useParams()
-	const [response , setResponse] = useState({})
+  const [response , setResponse] = useState({})
+  const [firstName, setFirstName] = useState('')
 
-	console.log(response, 'DETTE')
+ console.log(response)
 
   const sendForm = async (values) => {
+    setFirstName(values.firstName);
     const data = await axios.post(`http://localhost:5000/signsafe-62b14/europe-west1/api/register/${id}`, {
       name: values.firstName + ' ' + values.lastName,
       phone: values.phone,
@@ -77,6 +79,8 @@ const Form = () => {
           await sendForm(values)
           setStatus({ success: true });
           setSubmitting(false);
+          setAlertVisible(true)
+          resetForm()
         } catch (err) {
           setStatus({ success: false });
           setErrors({ submit: err.message });
@@ -93,18 +97,23 @@ const Form = () => {
         touched,
         values
       }) => (
+
+        
+
 				<>
         <Card>
-          <CardHeader title="SignSafe - Covid19" />
+
+          <CardHeader
+           title= "SafeSign Covid19 Register" />
           <Divider />
           <CardContent>
             {isAlertVisible && (
               <Box mb={3}>
                 <Alert
                   onClose={() => setAlertVisible(false)}
-                  severity="info"
+                  severity="success"
                 >
-                  This is an info alert - check it out!
+                  {response.status === 200 ? `Takk ${firstName}! Vi har sikkert lagret din registrering ved ${response.data.visitInfo.orgName}.`: ''}
                 </Alert>
               </Box>
             )}
@@ -232,11 +241,6 @@ const Form = () => {
             )}
           </CardContent>
         </Card>
-				<Card 
-				style={{marginTop: '30px', backgroundColor: 'limegreen', color: 'black'}}
-				>
-				{ response.status === 200 ? <CardHeader title={`Takk ${response.data.visitInfo.name}! Ditt besøk er registrert ved ${response.data.visitInfo.orgName}`} /> : ''}
-				</Card>
 				</>
       )}
     </Formik>
