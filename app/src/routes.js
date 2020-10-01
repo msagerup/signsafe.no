@@ -1,13 +1,5 @@
-import React, {
-  Suspense,
-  Fragment,
-  lazy
-} from 'react';
-import {
-  Switch,
-  Redirect,
-  Route
-} from 'react-router-dom';
+import React, { Suspense, Fragment, lazy } from 'react';
+import { Switch, Redirect, Route } from 'react-router-dom';
 import DashboardLayout from 'src/layouts/DashboardLayout';
 import DocsLayout from 'src/layouts/DocsLayout';
 import MainLayout from 'src/layouts/MainLayout';
@@ -29,12 +21,14 @@ export const renderRoutes = (routes = []) => (
             key={i}
             path={route.path}
             exact={route.exact}
-            render={(props) => (
-                <Layout>
-                  {route.routes
-                    ? renderRoutes(route.routes)
-                    : <Component {...props} />}
-                </Layout>
+            render={props => (
+              <Layout>
+                {route.routes ? (
+                  renderRoutes(route.routes)
+                ) : (
+                  <Component {...props} />
+                )}
+              </Layout>
             )}
           />
         );
@@ -76,7 +70,6 @@ const routes = [
     guard: AuthGuard,
     layout: DashboardLayout,
     routes: [
-     
       {
         exact: true,
         path: '/app/extra/charts/apex',
@@ -140,7 +133,9 @@ const routes = [
       {
         exact: true,
         path: '/app/reports/dashboard-alternative',
-        component: lazy(() => import('src/views/reports/DashboardAlternativeView'))
+        component: lazy(() =>
+          import('src/views/reports/DashboardAlternativeView')
+        )
       },
       {
         exact: true,
@@ -248,7 +243,7 @@ const routes = [
       {
         exact: true,
         path: '/',
-        component: PricingView
+        component: HomeView
       },
       {
         exact: true,
