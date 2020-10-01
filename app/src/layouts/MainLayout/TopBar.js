@@ -16,7 +16,7 @@ import {
 import { APP_VERSION } from 'src/constants';
 import Logo from 'src/components/Logo';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   root: {
     backgroundColor: theme.palette.background.default
   },
@@ -44,23 +44,14 @@ const TopBar = ({ className, ...rest }) => {
   const classes = useStyles();
 
   return (
-    <AppBar
-      className={clsx(classes.root, className)}
-      color="default"
-      {...rest}
-    >
+    <AppBar className={clsx(classes.root, className)} color="default" {...rest}>
       <Toolbar className={classes.toolbar}>
         <RouterLink to="/">
           <Logo className={classes.logo} />
         </RouterLink>
         <Hidden mdDown>
-          <Typography
-            variant="caption"
-            color="textSecondary"
-          >
-            Version
-            {' '}
-            {APP_VERSION}
+          <Typography variant="caption" color="textSecondary">
+            Version {APP_VERSION}
           </Typography>
         </Hidden>
         <Box flexGrow={1} />
@@ -72,7 +63,7 @@ const TopBar = ({ className, ...rest }) => {
           underline="none"
           variant="body2"
         >
-          Dashboard
+          Bedrift
         </Link>
         <Link
           className={classes.link}
@@ -82,9 +73,9 @@ const TopBar = ({ className, ...rest }) => {
           underline="none"
           variant="body2"
         >
-          Documentation
+          Kontakt
         </Link>
-        <Divider className={classes.divider} />
+        {/* <Divider className={classes.divider} />
         <Button
           color="secondary"
           component="a"
@@ -93,7 +84,7 @@ const TopBar = ({ className, ...rest }) => {
           size="small"
         >
           Get the kit
-        </Button>
+        </Button> */}
       </Toolbar>
     </AppBar>
   );

@@ -1,15 +1,19 @@
-import React from 'react';
+import React, { useState, useRef } from 'react';
 import PropTypes from 'prop-types';
+import { useHistory } from 'react-router-dom';
 import clsx from 'clsx';
 import {
   Box,
   Container,
   Grid,
+  IconButton,
+  Input,
+  Tooltip,
   Typography,
   makeStyles
 } from '@material-ui/core';
-
-const useStyles = makeStyles((theme) => ({
+import SendIcon from '@material-ui/icons/Send';
+const useStyles = makeStyles(theme => ({
   root: {
     backgroundColor: theme.palette.background.dark,
     paddingTop: 200,
@@ -48,132 +52,52 @@ const useStyles = makeStyles((theme) => ({
 
 const Hero = ({ className, ...rest }) => {
   const classes = useStyles();
+  const history = useHistory();
+  const [value, setValue] = useState('');
+
+  const handleChange = event => {
+    event.persist();
+    setValue(event.target.value);
+    console.log(event.target.value);
+  };
+
+  const handleSubmit = async event => {
+    alert('A name was submitted: ' + value);
+    history.push(`/app/projects/${value}`);
+    event.preventDefault();
+  };
 
   return (
-    <div
-      className={clsx(classes.root, className)}
-      {...rest}
-    >
+    <div className={clsx(classes.root, className)} {...rest}>
       <Container maxWidth="lg">
-        <Grid
-          container
-          spacing={3}
-        >
-          <Grid
-            item
-            xs={12}
-            md={5}
-          >
+        <Grid container spacing={3}>
+          <Grid item xs={12} md={5}>
             <Box
               display="flex"
               flexDirection="column"
               justifyContent="center"
               height="100%"
             >
-              <Typography
-                variant="overline"
-                color="secondary"
-              >
-                Introducing
+              <Typography variant="overline" color="secondary">
+                Welcome to Menyr
               </Typography>
-              <Typography
-                variant="h1"
-                color="textPrimary"
-              >
-                Devias React Material Kit - PRO
+              <Typography variant="h1" color="textPrimary">
+                Enter restaurant code:
               </Typography>
-              <Box mt={3}>
-                <Typography
-                  variant="body1"
-                  color="textSecondary"
+              <Input
+                fullWidth
+                onChange={handleChange}
+                type="number"
+                placeholder={`Legg inn kode`}
+              />
+              <Tooltip title="Send">
+                <IconButton
+                  onClick={handleSubmit}
+                  color={value.length > 0 ? 'primary' : 'default'}
                 >
-                  A professional kit that comes with ready-to-use Material-UI© components
-                  developed with one common goal in mind, help you build faster &amp; beautiful
-                  applications. Each component is fully customizable,
-                  responsive and easy to integrate.
-                </Typography>
-              </Box>
-              <Box mt={3}>
-                <Grid
-                  container
-                  spacing={3}
-                >
-                  <Grid item>
-                    <Typography
-                      variant="h1"
-                      color="secondary"
-                    >
-                      30+
-                    </Typography>
-                    <Typography
-                      variant="overline"
-                      color="textSecondary"
-                    >
-                      Demo Pages
-                    </Typography>
-                  </Grid>
-                  <Grid item>
-                    <Typography
-                      variant="h1"
-                      color="secondary"
-                    >
-                      UX
-                    </Typography>
-                    <Typography
-                      variant="overline"
-                      color="textSecondary"
-                    >
-                      Complete Flows
-                    </Typography>
-                  </Grid>
-                  <Grid item>
-                    <Typography
-                      variant="h1"
-                      color="secondary"
-                    >
-                      300+
-                    </Typography>
-                    <Typography
-                      variant="overline"
-                      color="textSecondary"
-                    >
-                      Components
-                    </Typography>
-                  </Grid>
-                </Grid>
-              </Box>
-              <Box mt={3}>
-                <img
-                  alt="Javascript"
-                  className={classes.technologyIcon}
-                  src="/static/images/javascript.svg"
-                />
-                <img
-                  alt="Typescript"
-                  className={classes.technologyIcon}
-                  src="/static/images/typescript.svg"
-                />
-              </Box>
-            </Box>
-          </Grid>
-          <Grid
-            item
-            xs={12}
-            md={7}
-          >
-            <Box position="relative">
-              <div className={classes.shape}>
-                <img
-                  alt="Shapes"
-                  src="/static/home/shapes.svg"
-                />
-              </div>
-              <div className={classes.image}>
-                <img
-                  alt="Presentation"
-                  src="/static/home/dark-light.png"
-                />
-              </div>
+                  <SendIcon />
+                </IconButton>
+              </Tooltip>
             </Box>
           </Grid>
         </Grid>

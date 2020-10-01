@@ -25,7 +25,7 @@ import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import { Users as UsersIcon } from 'react-feather';
 import getInitials from 'src/utils/getInitials';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   root: {},
   image: {
     height: 200,
@@ -47,33 +47,20 @@ const ProjectCard = ({ className, project, ...rest }) => {
 
   const handleLike = () => {
     setLiked(true);
-    setLikesCount((prevLikes) => prevLikes + 1);
+    setLikesCount(prevLikes => prevLikes + 1);
   };
 
   const handleUnlike = () => {
     setLiked(false);
-    setLikesCount((prevLikes) => prevLikes - 1);
+    setLikesCount(prevLikes => prevLikes - 1);
   };
 
   return (
-    <Card
-      className={clsx(classes.root, className)}
-      {...rest}
-    >
+    <Card className={clsx(classes.root, className)} {...rest}>
       <Box p={3}>
-        <CardMedia
-          className={classes.image}
-          image={project.image}
-        />
-        <Box
-          display="flex"
-          alignItems="center"
-          mt={2}
-        >
-          <Avatar
-            alt="Author"
-            src={project.author.avatar}
-          >
+        <CardMedia className={classes.image} image={project.image} />
+        <Box display="flex" alignItems="center" mt={2}>
+          <Avatar alt="Author" src={project.author.avatar}>
             {getInitials(project.author.name)}
           </Avatar>
           <Box ml={2}>
@@ -85,12 +72,8 @@ const ProjectCard = ({ className, project, ...rest }) => {
             >
               {project.title}
             </Link>
-            <Typography
-              variant="body2"
-              color="textSecondary"
-            >
-              by
-              {' '}
+            <Typography variant="body2" color="textSecondary">
+              by{' '}
               <Link
                 color="textPrimary"
                 component={RouterLink}
@@ -98,94 +81,50 @@ const ProjectCard = ({ className, project, ...rest }) => {
                 variant="h6"
               >
                 {project.author.name}
-              </Link>
-              {' '}
-              | Updated
-              {' '}
-              {moment(project.updatedAt).fromNow()}
+              </Link>{' '}
+              | Updated {moment(project.updatedAt).fromNow()}
             </Typography>
           </Box>
         </Box>
       </Box>
-      <Box
-        pb={2}
-        px={3}
-      >
-        <Typography
-          color="textSecondary"
-          variant="body2"
-        >
+      <Box pb={2} px={3}>
+        <Typography color="textSecondary" variant="body2">
           {project.caption}
         </Typography>
       </Box>
-      <Box
-        py={2}
-        px={3}
-      >
-        <Grid
-          alignItems="center"
-          container
-          justify="space-between"
-          spacing={3}
-        >
+      <Box py={2} px={3}>
+        <Grid alignItems="center" container justify="space-between" spacing={3}>
           <Grid item>
-            <Typography
-              variant="h5"
-              color="textPrimary"
-            >
+            <Typography variant="h5" color="textPrimary">
               {numeral(project.budget).format(`${project.currency}0,0.00`)}
             </Typography>
-            <Typography
-              variant="body2"
-              color="textSecondary"
-            >
+            <Typography variant="body2" color="textSecondary">
               Budget
             </Typography>
           </Grid>
           <Grid item>
-            <Typography
-              variant="h5"
-              color="textPrimary"
-            >
+            <Typography variant="h5" color="textPrimary">
               {project.location}
             </Typography>
-            <Typography
-              variant="body2"
-              color="textSecondary"
-            >
+            <Typography variant="body2" color="textSecondary">
               Location
             </Typography>
           </Grid>
           <Grid item>
-            <Typography
-              variant="h5"
-              color="textPrimary"
-            >
+            <Typography variant="h5" color="textPrimary">
               {project.type}
             </Typography>
-            <Typography
-              variant="body2"
-              color="textSecondary"
-            >
+            <Typography variant="body2" color="textSecondary">
               Type
             </Typography>
           </Grid>
         </Grid>
       </Box>
       <Divider />
-      <Box
-        py={2}
-        pl={2}
-        pr={3}
-        display="flex"
-        alignItems="center"
-      >
+      <Box py={2} pl={2} pr={3} display="flex" alignItems="center">
         {isLiked ? (
           <Tooltip title="Unlike">
-            <IconButton
-              className={classes.likedButton}
-              onClick={handleUnlike}
-            >
+            <IconButton className={classes.likedButton} onClick={handleUnlike}>
               <FavoriteIcon fontSize="small" />
             </IconButton>
           </Tooltip>
@@ -196,10 +135,7 @@ const ProjectCard = ({ className, project, ...rest }) => {
             </IconButton>
           </Tooltip>
         )}
-        <Typography
-          variant="subtitle2"
-          color="textSecondary"
-        >
+        <Typography variant="subtitle2" color="textSecondary">
           {likesCount}
         </Typography>
         <SvgIcon
@@ -209,18 +145,11 @@ const ProjectCard = ({ className, project, ...rest }) => {
         >
           <UsersIcon />
         </SvgIcon>
-        <Typography
-          variant="subtitle2"
-          color="textSecondary"
-        >
+        <Typography variant="subtitle2" color="textSecondary">
           {project.membersCount}
         </Typography>
         <Box flexGrow={1} />
-        <Rating
-          value={project.rating}
-          size="small"
-          readOnly
-        />
+        <Rating value={project.rating} size="small" readOnly />
       </Box>
     </Card>
   );

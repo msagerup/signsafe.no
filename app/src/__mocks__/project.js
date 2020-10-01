@@ -10,8 +10,9 @@ mock.onGet('/api/projects/overview/projects').reply(() => {
         avatar: '/static/images/avatars/avatar_6.png',
         name: 'Katarina Smith'
       },
-      budget: 2394.00,
-      caption: 'We\'re looking for experienced Developers and Product Designers to come aboard and help us build succesful businesses through software.',
+      budget: 2394.0,
+      caption:
+        "We're looking for experienced Developers and Product Designers to come aboard and help us build succesful businesses through software.",
       currency: '$',
       isLiked: true,
       likesCount: 57,
@@ -50,8 +51,9 @@ mock.onGet('/api/projects/projects').reply(() => {
         avatar: '/static/images/avatars/avatar_5.png',
         name: 'Anje Keizer'
       },
-      budget: 6125.00,
-      caption: 'We\'re looking for experienced Developers and Product Designers to come aboard and help us build succesful businesses through software.',
+      budget: 6125.0,
+      caption:
+        "We're looking for experienced Developers and Product Designers to come aboard and help us build succesful businesses through software.",
       currency: '$',
       isLiked: true,
       likesCount: 7,
@@ -73,8 +75,9 @@ mock.onGet('/api/projects/projects').reply(() => {
         avatar: '/static/images/avatars/avatar_9.png',
         name: 'Emilee Simchenko'
       },
-      budget: 4205.00,
-      caption: 'We\'re looking for experienced Developers and Product Designers to come aboard and help us build succesful businesses through software.',
+      budget: 4205.0,
+      caption:
+        "We're looking for experienced Developers and Product Designers to come aboard and help us build succesful businesses through software.",
       currency: '$',
       isLiked: true,
       likesCount: 12,
@@ -96,8 +99,9 @@ mock.onGet('/api/projects/projects').reply(() => {
         avatar: '/static/images/avatars/avatar_10.png',
         name: 'Elliott Stone'
       },
-      budget: 2394.00,
-      caption: 'We\'re looking for experienced Developers and Product Designers to come aboard and help us build succesful businesses through software.',
+      budget: 2394.0,
+      caption:
+        "We're looking for experienced Developers and Product Designers to come aboard and help us build succesful businesses through software.",
       currency: '$',
       isLiked: true,
       likesCount: 18,
@@ -119,8 +123,9 @@ mock.onGet('/api/projects/projects').reply(() => {
         avatar: '/static/images/avatars/avatar_11.png',
         name: 'Shen Zhi'
       },
-      budget: 2784.00,
-      caption: 'We\'re looking for experienced Developers and Product Designers to come aboard and help us build succesful businesses through software.',
+      budget: 2784.0,
+      caption:
+        "We're looking for experienced Developers and Product Designers to come aboard and help us build succesful businesses through software.",
       currency: '$',
       image: '/static/images/projects/project_4.png',
       isLiked: false,
@@ -142,8 +147,9 @@ mock.onGet('/api/projects/projects').reply(() => {
         avatar: '/static/images/avatars/avatar_3.png',
         name: 'Cao Yu'
       },
-      budget: 5835.00,
-      caption: 'We\'re looking for experienced Developers and Product Designers to come aboard and help us build succesful businesses through software.',
+      budget: 5835.0,
+      caption:
+        "We're looking for experienced Developers and Product Designers to come aboard and help us build succesful businesses through software.",
       currency: '$',
       isLiked: false,
       likesCount: 7,
@@ -165,8 +171,9 @@ mock.onGet('/api/projects/projects').reply(() => {
         avatar: '/static/images/avatars/avatar_5.png',
         name: 'Anje Keizer'
       },
-      budget: 4255.00,
-      caption: 'We\'re looking for experienced Developers and Product Designers to come aboard and help us build succesful businesses through software.',
+      budget: 4255.0,
+      caption:
+        "We're looking for experienced Developers and Product Designers to come aboard and help us build succesful businesses through software.",
       currency: '$',
       isLiked: true,
       likesCount: 4,
@@ -274,12 +281,7 @@ mock.onGet('/api/projects/projects/1').reply(() => {
         avatar: '/static/images/avatars/avatar_6.png',
         commonConnections: 17,
         cover: '/static/images/covers/cover_1.jpg',
-        labels: [
-          'BackEnd development',
-          'Firebase',
-          'MongoDB',
-          'ExpressJS'
-        ],
+        labels: ['BackEnd development', 'Firebase', 'MongoDB', 'ExpressJS'],
         name: 'Katarina Smith'
       }
     ],
@@ -288,8 +290,9 @@ mock.onGet('/api/projects/projects/1').reply(() => {
       avatar: '/static/images/avatars/avatar_9.png',
       name: 'Emilee Simchenko'
     },
-    budget: 12500.00,
-    caption: 'We\'re looking for experienced Developers and Product Designers to come aboard and help us build succesful businesses through software.',
+    budget: 12500.0,
+    caption:
+      "We're looking for experienced Developers and Product Designers to come aboard and help us build succesful businesses through software.",
     currency: '$',
     description: `
 Design files are attached in the files tab.
@@ -369,9 +372,10 @@ The project has been created in Sketch so let me know if there are any problems 
         id: 'to33twsyjphcfj55y3t07261',
         author: {
           avatar: '/static/images/avatars/avatar_7.png',
-          name: 'Adam Denisov',
+          name: 'Adam Denisov'
         },
-        comment: 'Not the best people managers, poor management skills, poor career development programs. Communication from corporate & leadership isn\'t always clear and is sometime one-sided. Low pay compared to FANG.',
+        comment:
+          "Not the best people managers, poor management skills, poor career development programs. Communication from corporate & leadership isn't always clear and is sometime one-sided. Low pay compared to FANG.",
         createdAt: moment()
           .subtract(2, 'hours')
           .toDate()
@@ -382,9 +386,10 @@ The project has been created in Sketch so let me know if there are any problems 
         id: '6z9dwxjzkqbmxuluxx2681jd',
         author: {
           avatar: '/static/images/avatars/avatar_3.png',
-          name: 'Cao Yu',
+          name: 'Cao Yu'
         },
-        comment: 'I have been working with this company full-time. Great for the work life balance. Cons, decentralized decision making process across the organization.',
+        comment:
+          'I have been working with this company full-time. Great for the work life balance. Cons, decentralized decision making process across the organization.',
         createdAt: moment()
           .subtract(2, 'hours')
           .toDate()
@@ -397,7 +402,7 @@ The project has been created in Sketch so let me know if there are any problems 
       .toDate()
       .getTime(),
     tags: ['React JS'],
-    title: 'Develop a PDF Export App',
+    title: 'Xeast',
     type: 'Full-Time',
     updatedAt: moment()
       .subtract(23, 'minutes')
