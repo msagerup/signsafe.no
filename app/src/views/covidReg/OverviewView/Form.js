@@ -33,7 +33,7 @@ const Form = () => {
 
   const sendForm = async (values) => {
     setFirstName(values.firstName);
-    const data = await axios.post(`http://localhost:5000/signsafe-62b14/europe-west1/api/register/${id}`, {
+    const data = await axios.post(`https://europe-west1-signsafe-62b14.cloudfunctions.net/api/register/${id}`, {
       name: values.firstName + ' ' + values.lastName,
       phone: values.phone,
       email: values.email

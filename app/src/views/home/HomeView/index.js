@@ -21,9 +21,9 @@ const HomeView = () => {
     >
       <Hero />
       <Features />
-      <Testimonials />
+      {/* <Testimonials />
       <CTA />
-      <FAQS />
+      <FAQS /> */}
     </Page>
   );
 };
