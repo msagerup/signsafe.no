@@ -48,7 +48,7 @@ const TopBar = ({
       {...rest}
     >
       <Toolbar className={classes.toolbar}>
-        <Hidden lgUp>
+        {/* <Hidden lgUp>
           <IconButton
             color="inherit"
             onClick={onMobileNavOpen}
@@ -57,7 +57,7 @@ const TopBar = ({
               <MenuIcon />
             </SvgIcon>
           </IconButton>
-        </Hidden>
+        </Hidden> */}
         
         <Box
           ml={2}

@@ -131,7 +131,7 @@ exports.register = async (req, res) => {
 
 	const visitInfo = {
 		name: body.name,
-		email: 'msagerup@online.no',
+		email: body.email,
 		phone: body.phone,
 		time_of_first_visit: new Date(),
 		orgName: orgId

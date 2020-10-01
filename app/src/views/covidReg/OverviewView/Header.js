@@ -72,7 +72,7 @@ const Header = ({ className, ...rest }) => {
             variant="h4"
             color="textPrimary"
           >
-            Flott at du tar tiden til å regitrere deg.
+            Flott at du tar tiden til å registrere deg.
           </Typography>
         </Grid>
         <Hidden smDown>

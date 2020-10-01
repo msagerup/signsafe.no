@@ -31,8 +31,7 @@ const Form = () => {
 	console.log(response, 'DETTE')
 
   const sendForm = async (values) => {
-    console.log(values, 'verdier....')
-    const data = await axios.post(`https://europe-west1-signsafe-62b14.cloudfunctions.net/api/register/${id}`, {
+    const data = await axios.post(`http://localhost:5000/signsafe-62b14/europe-west1/api/register/${id}`, {
       name: values.firstName + ' ' + values.lastName,
       phone: values.phone,
       email: values.email
@@ -226,7 +225,7 @@ const Form = () => {
                     type="submit"
                     variant="contained"
                   >
-                    Registrer visit
+                    Registrer besøk
                   </Button>
                 </Box>
               </form>
@@ -236,7 +235,7 @@ const Form = () => {
 				<Card 
 				style={{marginTop: '30px', backgroundColor: 'limegreen', color: 'black'}}
 				>
-				{ response.status === 200 ? <CardHeader title={`Takk ${response.data.name} ditt besøk er registrert ved ${response.data.orgName}`} /> : ''}
+				{ response.status === 200 ? <CardHeader title={`Takk ${response.data.visitInfo.name}! Ditt besøk er registrert ved ${response.data.visitInfo.orgName}`} /> : ''}
 				</Card>
 				</>
       )}
