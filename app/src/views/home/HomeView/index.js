@@ -15,15 +15,12 @@ const HomeView = () => {
   const classes = useStyles();
 
   return (
-    <Page
-      className={classes.root}
-      title="Home"
-    >
+    <Page className={classes.root} title="Home">
       <Hero />
       <Features />
       <Testimonials />
-      <CTA />
-      <FAQS />
+      {/* <CTA /> */}
+      {/* <FAQS /> */}
     </Page>
   );
 };

@@ -20,7 +20,7 @@ const useStyles = makeStyles(theme => ({
     }
   },
   technologyIcon: {
-    height: 40,
+    maxWidth: '100%',
     margin: theme.spacing(1)
   },
   image: {
@@ -53,76 +53,65 @@ const Hero = ({ className, ...rest }) => {
     <div className={clsx(classes.root, className)} {...rest}>
       <Container maxWidth="lg">
         <Grid container spacing={3}>
+          <Grid item xs={12} md={5}>
+            <Box
+              display="flex"
+              flexDirection="column"
+              // justifyContent="center"
+              height="100%"
+            >
+              <img
+                alt="Javascript"
+                className={classes.technologyIcon}
+                src="/static/home/home.logo.png"
+              />
+              <Typography variant="overline" color="secondary">
+                KOM I GANG
+              </Typography>
+              <Typography variant="body1" color="textSecondary">
+                Vi tar smittervern på alvor. Registrer besøkende for enklere
+                smittesporing. Dette for å kunne varsle ansatte og gjester ved
+                påvist Covid-19. Begynn med besøksregistrering i dag.
+              </Typography>
+
+              <Box mt={3}>
+                <Grid container spacing={3}>
+                  <Grid item>
+                    <Typography variant="h1" color="secondary">
+                      Print
+                    </Typography>
+                    <Typography variant="overline" color="textSecondary">
+                      plakat
+                    </Typography>
+                  </Grid>
+                  <Grid item>
+                    <Typography variant="h1" color="secondary">
+                      Scan
+                    </Typography>
+                    <Typography variant="overline" color="textSecondary">
+                      QR kode
+                    </Typography>
+                  </Grid>
+                  <Grid item>
+                    <Typography variant="h1" color="secondary">
+                      Registrer
+                    </Typography>
+                    <Typography variant="overline" color="textSecondary">
+                      Besøkende
+                    </Typography>
+                  </Grid>
+                </Grid>
+              </Box>
+            </Box>
+          </Grid>
           <Grid item xs={12} md={7}>
             <Box position="relative">
               <div className={classes.shape}>
                 <img alt="Shapes" src="/static/home/shapes.svg" />
               </div>
               <div className={classes.image}>
-                <img alt="Presentation" src="/static/home/dark-light.png" />
+                <img alt="Presentation" src="/static/home/home.poster.png" />
               </div>
-            </Box>
-          </Grid>
-          <Grid item xs={12} md={5}>
-            <Box
-              display="flex"
-              flexDirection="column"
-              justifyContent="center"
-              height="100%"
-            >
-              <Typography variant="overline" color="secondary">
-                Registrer deg med
-              </Typography>
-              <Typography variant="h1" color="textPrimary">
-                SignSafe.no
-              </Typography>
-              <Box mt={3}>
-                <Typography variant="body1" color="textSecondary">
-                  Vi tar smittervern på alvor. Registrer besøkende for enklere
-                  smittesporing. Dette for å kunne varsle ansatte og gjester ved
-                  påvist Covid-19. Kom i gang med besøksregistrering på i dag.
-                </Typography>
-              </Box>
-              {/* <Box mt={3}>
-                <Grid container spacing={3}>
-                  <Grid item>
-                    <Typography variant="h1" color="secondary">
-                      1
-                    </Typography>
-                    <Typography variant="overline" color="textSecondary">
-                      Registrer din bedrift
-                    </Typography>
-                  </Grid>
-                  <Grid item>
-                    <Typography variant="h1" color="secondary">
-                      2
-                    </Typography>
-                    <Typography variant="overline" color="textSecondary">
-                      Få tilsendt QR kode
-                    </Typography>
-                  </Grid>
-                  <Grid item>
-                    <Typography variant="h1" color="secondary">
-                      3
-                    </Typography>
-                    <Typography variant="overline" color="textSecondary">
-                      Print ut og heng opp
-                    </Typography>
-                  </Grid>
-                </Grid>
-              </Box> */}
-              {/* <Box mt={3}>
-                <img
-                  alt="Javascript"
-                  className={classes.technologyIcon}
-                  src="/static/images/javascript.svg"
-                />
-                <img
-                  alt="Typescript"
-                  className={classes.technologyIcon}
-                  src="/static/images/typescript.svg"
-                />
-              </Box> */}
             </Box>
           </Grid>
         </Grid>
