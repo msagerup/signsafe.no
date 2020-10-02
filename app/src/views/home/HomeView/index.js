@@ -18,8 +18,8 @@ const HomeView = () => {
     <Page className={classes.root} title="Home">
       <Hero />
       <Features />
-      {/* <Testimonials />
-      <CTA />
+      <Testimonials />
+      {/* <CTA />
       <FAQS /> */}
     </Page>
   );
