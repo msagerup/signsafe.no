@@ -1,9 +1,5 @@
 import _ from 'lodash';
-import {
-  colors,
-  createMuiTheme,
-  responsiveFontSizes
-} from '@material-ui/core';
+import { colors, createMuiTheme, responsiveFontSizes } from '@material-ui/core';
 import { THEMES } from 'src/constants';
 import { softShadows, strongShadows } from './shadows';
 import typography from './typography';
@@ -55,10 +51,10 @@ const themesOptions = [
         paper: colors.common.white
       },
       primary: {
-        main: colors.indigo[600]
+        main: '#5F94BE'
       },
       secondary: {
-        main: '#5850EC'
+        main: '#9ccc65'
       },
       text: {
         primary: colors.blueGrey[900],
@@ -85,10 +81,10 @@ const themesOptions = [
         paper: '#282C34'
       },
       primary: {
-        main: '#5F94BE'
+        main: '#9ccc65'
       },
       secondary: {
-        main: '#5F94BE'
+        main: '#9ccc65'
       },
       text: {
         primary: '#e6e5e8',
@@ -130,7 +126,7 @@ const themesOptions = [
 ];
 
 export const createTheme = (config = {}) => {
-  let themeOptions = themesOptions.find((theme) => theme.name === config.theme);
+  let themeOptions = themesOptions.find(theme => theme.name === config.theme);
 
   if (!themeOptions) {
     console.warn(new Error(`The theme ${config.theme} is not valid`));
@@ -138,12 +134,7 @@ export const createTheme = (config = {}) => {
   }
 
   let theme = createMuiTheme(
-    _.merge(
-      {},
-      baseOptions,
-      themeOptions,
-      { direction: config.direction }
-    )
+    _.merge({}, baseOptions, themeOptions, { direction: config.direction })
   );
 
   if (config.responsiveFontSizes) {
@@ -151,4 +142,4 @@ export const createTheme = (config = {}) => {
   }
 
   return theme;
-}
+};

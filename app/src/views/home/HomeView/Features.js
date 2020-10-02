@@ -51,7 +51,7 @@ const Features = ({ className, ...rest }) => {
                   </Typography>
                   <Typography variant="body1" color="textPrimary">
                     Ingen nedlastning nødvendig. Vi sender deg nødvendig
-                    informasjon og QR kode for å starte. Print og Heng opp QR
+                    informasjon og QR kode for å starte. Print og heng opp QR
                     kode. Tjenesten er nå klar til burk.
                   </Typography>
                 </Box>

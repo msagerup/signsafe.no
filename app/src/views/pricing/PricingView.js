@@ -13,18 +13,18 @@ import {
 import Page from 'src/components/Page';
 import PricingCard from './PricingCard';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   root: {
     backgroundColor: theme.palette.background.dark,
     minHeight: '100%',
     height: '100%',
     paddingTop: 120,
     paddingBottom: 120
-	},
-	splashText: {
-		fontSize: '2.5rem',
-		color: theme.palette.text.primary
-	},
+  },
+  splashText: {
+    fontSize: '2.5rem',
+    color: theme.palette.text.primary
+  },
   product: {
     position: 'relative',
     padding: theme.spacing(5, 3),
@@ -59,11 +59,8 @@ const PricingView = () => {
   const classes = useStyles();
 
   return (
-    <Page
-      className={classes.root}
-      title="Pricing"
-    >
-      <Container maxWidth="sm">
+    <Page className={classes.root} title="Pricing">
+      {/* <Container maxWidth="sm">
         <Typography
           align="center"
           className={classes.splashText}
@@ -80,47 +77,44 @@ const PricingView = () => {
 						Lorem ipsum dolor, sit amet consectetur adipisicing elit. Necessitatibus distinctio natus quas architecto debitis dolore dignissimos reprehenderit quae doloribus consequatur.
           </Typography>
         </Box>
-      </Container>
+      </Container> */}
       <Box mt="160px">
         <Container maxWidth="lg">
-          <Grid
-            container
-            spacing={4}
-          >
-						<PricingCard
-							cssRule = {classes.product}
-							imgUrl = '/static/images/products/product_standard.svg'
-							imgAlt = 'Product'
-							cardName= 'Covid19 Registrering'
-							price= '145KR'
-							subTitle= 'En adresse.'
-							salePitch1 = 'Registrerings punkt ved disk'
-							salePitch2 = 'Innsikt i antall registrerte'
-							SalePitch3 = 'Sikker oppbevaring av person info'
-						/>
-						<PricingCard
-							cssRule = {clsx(classes.product, classes.recommendedProduct)}
-							textColor = ''
-							imgUrl = '/static/images/products/product_premium--outlined.svg'
-							imgAlt = 'Standard'
-							cardName= 'Covid19 Reg. +  Digitale menyer.'
-							price= '235KR'
-							subTitle= '+5 adresser'
-							salePitch1 = 'Digial Meny'
-							salePitch2 = 'Covid19 registrering modul.'
-							SalePitch3 = 'Sikker oppbevaring av person info'
-						/>
-						<PricingCard
-							cssRule = {classes.product}
-							imgUrl = '/static/images/products/product_extended.svg'
-							imgAlt = 'Product'
-							cardName= 'BTLR LITE'
-							price= '330KR'
-							subTitle= '10 + Adresser.'
-							salePitch1 = 'Digial Meny'
-							salePitch2 = 'Covid19 registrering modul og sikkert data lagring.'
-							SalePitch3 = 'Motta bestillinger og betalinger, full oversikt over stock, m.m'
-						/>
+          <Grid container spacing={4}>
+            <PricingCard
+              cssRule={classes.product}
+              imgUrl="/static/images/products/product_standard.svg"
+              imgAlt="Product"
+              cardName="Covid19 Registrering"
+              price="145KR"
+              subTitle="En adresse."
+              salePitch1="Registrerings punkt ved disk"
+              salePitch2="Innsikt i antall registrerte"
+              SalePitch3="Sikker oppbevaring av person info"
+            />
+            <PricingCard
+              cssRule={clsx(classes.product, classes.recommendedProduct)}
+              textColor=""
+              imgUrl="/static/images/products/product_premium--outlined.svg"
+              imgAlt="Standard"
+              cardName="Covid19 Reg. +  Digitale menyer."
+              price="235KR"
+              subTitle="+5 adresser"
+              salePitch1="Digial Meny"
+              salePitch2="Covid19 registrering modul."
+              SalePitch3="Sikker oppbevaring av person info"
+            />
+            <PricingCard
+              cssRule={classes.product}
+              imgUrl="/static/images/products/product_extended.svg"
+              imgAlt="Product"
+              cardName="BTLR LITE"
+              price="330KR"
+              subTitle="10 + Adresser."
+              salePitch1="Digial Meny"
+              salePitch2="Covid19 registrering modul og sikkert data lagring."
+              SalePitch3="Motta bestillinger og betalinger, full oversikt over stock, m.m"
+            />
           </Grid>
         </Container>
       </Box>
