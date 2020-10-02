@@ -5,17 +5,15 @@ import clsx from 'clsx';
 import {
   AppBar,
   Box,
-  Toolbar,
+	Toolbar,
+	Divider,
   Button,
-  makeStyles,
-  SvgIcon
+  makeStyles
 } from '@material-ui/core';
 import { Menu as MenuIcon } from 'react-feather';
 import Logo from 'src/components/Logo';
 import { THEMES } from 'src/constants';
-import Notifications from './Notifications';
-import Search from './Search';
-import Settings from './Settings'
+
 
 
 const useStyles = makeStyles((theme) => ({
@@ -31,6 +29,12 @@ const useStyles = makeStyles((theme) => ({
   },
   toolbar: {
     minHeight: 64
+	},
+	divider: {
+    width: 1,
+    height: 32,
+    marginLeft: theme.spacing(2),
+    marginRight: theme.spacing(2)
   }
 }));
 
@@ -63,7 +67,16 @@ const TopBar = ({
           ml={2}
           flexGrow={1}
         />
-        <Button size="small"
+				{/* <Divider className={classes.divider} />
+				<Button size="small"
+				color="secondary"
+				variant="contained"
+        // onClick ={() => history.push('/')}
+        >
+          se din data
+        </Button> */}
+				<Divider className={classes.divider} />
+				<Button size="small"
         onClick ={() => history.push('/')}
         >
           Om oss

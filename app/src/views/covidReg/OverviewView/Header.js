@@ -58,7 +58,7 @@ const Header = ({ className, ...rest }) => {
             className={classes.splashText}
             color="textPrimary"
           >
-            SafeSign - Covid19 Register.
+            SignSafe - Covid19 Register.
             {' '}
             
           </Typography>

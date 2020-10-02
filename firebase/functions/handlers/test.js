@@ -133,6 +133,8 @@ exports.register = async (req, res) => {
 		name: body.name,
 		email: body.email,
 		phone: body.phone,
+		policy: body.policy,
+		otherNotes : body.other,
 		time_of_first_visit: new Date(),
 		orgName: orgId
 	}
