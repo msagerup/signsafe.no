@@ -64,8 +64,6 @@ const TopBar = ({ className, ...rest }) => {
           </Typography>
         </Hidden>
         <Box flexGrow={1} />
-        
-        
         <Divider className={classes.divider} />
         <Button
           color="secondary"

@@ -5,7 +5,8 @@ import {
   AppBar,
   Box,
   Toolbar,
-  Hidden,
+	Hidden,
+	Divider,
   IconButton,
   Link,
   makeStyles
@@ -26,6 +27,12 @@ const useStyles = makeStyles((theme) => ({
   },
   link: {
     fontWeight: theme.typography.fontWeightMedium
+	},
+	divider: {
+    width: 1,
+    height: 32,
+    marginLeft: theme.spacing(2),
+    marginRight: theme.spacing(2)
   }
 }));
 
@@ -52,15 +59,16 @@ const TopBar = ({ onMobileNavOpen }) => {
           ml={2}
           flexGrow={1}
         />
+				<Divider className={classes.divider} />
         <Link
           className={classes.link}
           color="textSecondary"
           component={RouterLink}
-          to="/app"
+          to="/"
           underline="none"
           variant="body2"
         >
-          Dashboard
+          Main Page
         </Link>
       </Toolbar>
     </AppBar>
