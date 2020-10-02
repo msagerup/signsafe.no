@@ -23,13 +23,31 @@ import {
   Grid,
   Link,
   TextField,
+  makeStyles,
   Typography
 } from '@material-ui/core';
 import { Alert } from '@material-ui/lab';
 import { closeModal } from 'src/slices/calendar';
 
+const useStyles = makeStyles((theme) => ({
+  root: {},
+  action: {
+    backgroundColor: theme.palette.common.white
+	},
+  input: {
+    "&:-webkit-autofill": {
+      WebkitBoxShadow: "0 0 0 1000px white inset",
+      fontSize: "30px"
+    }
+  },
+  input2: {
+    WebkitBoxShadow: "0 0 0 1000px white inset"
+  }
+}));
 
-const Form = () => {
+
+const Form = ({className, ...rest}) => {
+  const classes = useStyles();
   const [isAlertVisible, setAlertVisible] = useState(false);
 	let {id} = useParams();
 	// Resonse from api call.
@@ -64,10 +82,13 @@ const Form = () => {
 	console.log('ID FROM URL', id)
 
   const sendForm = async (values) => {
+    console.log('Dette er values ', values)
     setFirstName(values.firstName);
-    const data = await axios.post(`https://europe-west1-signsafe-62b14.cloudfunctions.net/api/register/${id}`, {
+    const data = await axios.post(`http://localhost:5000/signsafe-62b14/europe-west1/api/register/${id}`, {
       name: values.firstName + ' ' + values.lastName,
       phone: values.phone,
+      other: values.other,
+      policy: values.policy,
       email: values.email
     }).then((result => {
 			setResponse(result)
@@ -96,7 +117,7 @@ const Form = () => {
         email: '',
         phone: '',
 				firstName: '',
-				secret: '',
+				// secret: '',
 				lastName: '',
 				other: '',
         policy: false,
@@ -107,7 +128,7 @@ const Form = () => {
         phone: Yup.number().required('Please enter your phone number'),
         firstName: Yup.string().required('Required'),
 				lastName: Yup.string().required('Required'),
-				secret: Yup.string(),
+				// secret: Yup.string(),
 				other: Yup.string(),
         policy: Yup.boolean().oneOf([true], 'This field must be checked')
       })}
@@ -150,7 +171,7 @@ const Form = () => {
 				<>
 					<Card>
 						<CardHeader
-						title= "Skriv et passord for å se data ved neste registreing. " />
+						title= "SignSafe Covid Register " />
 						<Divider />
 						<CardContent>
 							{isAlertVisible && (
@@ -242,6 +263,7 @@ const Form = () => {
 									</Box>
 									<Box mt={2}>
 										<TextField
+                      autoFocus
 											error={Boolean(touched.other && errors.other)}
 											fullWidth
 											helperText={touched.other && errors.other}
@@ -254,7 +276,7 @@ const Form = () => {
 											variant="outlined"
 										/>
 									</Box>
-									<Box mt={2}>
+									{/* <Box mt={2}>
 										<TextField
 											error={Boolean(touched.secret && errors.secret)}
 											fullWidth
@@ -269,7 +291,7 @@ const Form = () => {
 											value={values.secret}
 											variant="outlined"
 										/>
-									</Box>
+									</Box> */}
 									{/* <Box
 										alignItems="center"
 										display="flex"

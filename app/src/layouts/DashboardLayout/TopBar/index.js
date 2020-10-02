@@ -67,14 +67,14 @@ const TopBar = ({
           ml={2}
           flexGrow={1}
         />
-				<Divider className={classes.divider} />
+				{/* <Divider className={classes.divider} />
 				<Button size="small"
 				color="secondary"
 				variant="contained"
         // onClick ={() => history.push('/')}
         >
           se din data
-        </Button>
+        </Button> */}
 				<Divider className={classes.divider} />
 				<Button size="small"
         onClick ={() => history.push('/')}
