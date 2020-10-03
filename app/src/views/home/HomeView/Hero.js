@@ -15,7 +15,7 @@ const useStyles = makeStyles(theme => ({
     paddingTop: 200,
     paddingBottom: 200,
     [theme.breakpoints.down('md')]: {
-      paddingTop: 60,
+      paddingTop: 30,
       paddingBottom: 60
     }
   },

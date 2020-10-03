@@ -24,7 +24,8 @@ const useStyles = makeStyles((theme) => ({
     height: 64
   },
   logo: {
-    marginRight: theme.spacing(2)
+    marginRight: theme.spacing(2),
+    height: '45px'
   },
   link: {
     fontWeight: theme.typography.fontWeightMedium,
@@ -50,19 +51,10 @@ const TopBar = ({ className, ...rest }) => {
       {...rest}
     >
       <Toolbar className={classes.toolbar}>
-        {/* <RouterLink to="/">
+        <RouterLink to="/">
           <Logo className={classes.logo} />
-        </RouterLink> */}
-        <Hidden mdDown>
-          <Typography
-            variant="caption"
-            color="textSecondary"
-          >
-            Version
-            {' '}
-            {APP_VERSION}
-          </Typography>
-        </Hidden>
+        </RouterLink>
+        
         <Box flexGrow={1} />
         <Divider className={classes.divider} />
         <Button
@@ -72,7 +64,7 @@ const TopBar = ({ className, ...rest }) => {
           variant="contained"
           size="small"
         >
-          Login in
+          Bestill nå
         </Button>
       </Toolbar>
     </AppBar>
