@@ -14,8 +14,8 @@ import {
 const useStyles = makeStyles(theme => ({
   root: {
     backgroundColor: theme.palette.background.default,
-    paddingTop: 128,
-    paddingBottom: 128
+    paddingTop: 80,
+    paddingBottom: 80
   },
   avatar: {
     backgroundColor: theme.palette.secondary.main,
@@ -52,7 +52,7 @@ const Features = ({ className, ...rest }) => {
                   <Typography variant="body1" color="textPrimary">
                     Ingen nedlastning nødvendig. Vi sender deg nødvendig
                     informasjon og QR kode for å starte. Print og heng opp QR
-                    kode. Tjenesten er nå klar til burk.
+                    kode. Tjenesten er nå klar til bruk.
                   </Typography>
                 </Box>
               </Box>
