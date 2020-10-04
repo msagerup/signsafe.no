@@ -1,15 +1,15 @@
-const admin = require('firebase-admin');
+// const admin = require('firebase-admin');
+// const functions = require('firebase-functions');
+// const cors = require('cors')({ origin: true});
+// const serviceAccount = require('../key/key.json') 
 
-const serviceAccount = require('../key/key.json') 
+// admin.initializeApp({
+//   credential: admin.credential.cert(serviceAccount),
+//   databaseURL: "https://hotel-roomservice.firebaseio.com"
+// });
 
-admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount),
-  databaseURL: "https://signsafe-62b14.firebaseio.com"
-});
-
-const db = admin.firestore
-
-// TODO : FIND FIREBASE CONFIG
+// const db = admin.firestore
 
 
-module.exports = {admin, db}
+
+// module.exports = {admin, db}
