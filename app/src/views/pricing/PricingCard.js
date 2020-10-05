@@ -9,9 +9,7 @@ import {
   makeStyles
 } from '@material-ui/core';
 import PricingModal from './PricingModal';
-import PricingForm from './PricingForm'
-import { rest } from 'lodash';
-import { SettingsPowerRounded } from '@material-ui/icons';
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -37,7 +35,10 @@ const useStyles = makeStyles((theme) => ({
     '&:hover': {
       transform: 'scale(1.1)'
     }
-  },
+	},
+	callToActionButton : {
+		backgroundColor: theme.palette.primary
+	},
   productImage: {
     borderRadius: theme.shape.borderRadius,
     position: 'absolute',
@@ -78,11 +79,12 @@ const PricingCard = ({imgUrl, imgAlt, cardName, price, subTitle, salePitch1, sal
       <Grid
         item
         md={4}
-        xs={12}
+				xs={12}
       >
         <Paper
         className={cssRule}
-        elevation={1}
+				elevation={1}
+				onClick={() => handleModal()}
       >
         <img
           // alt={imageUrl}
@@ -140,9 +142,11 @@ const PricingCard = ({imgUrl, imgAlt, cardName, price, subTitle, salePitch1, sal
           <Divider />
         </Box>
         <Button
-          variant="contained"
+					// className={classes.callToActionButton}
+					color="secondary"
+					variant="contained"
           fullWidth
-          className={classes.chooseButton}
+          // className={classes.chooseButton}
           onClick = {() => handleModal()}
           
         >

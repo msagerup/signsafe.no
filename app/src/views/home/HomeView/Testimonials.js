@@ -96,7 +96,7 @@ const Testimonials = ({ className, ...rest }) => {
             imgAlt="Product"
             // cardName="BTLR LITE"
             price="499"
-            subTitle="3-10 lokasjoner / 3-10 QR koder"
+            subTitle="4-10 lokasjoner / 3-10 QR koder"
             salePitch1="Ingen bindingstid"
             salePitch2="Ubegrenset support"
             SalePitch3="Oppbevaring og sletting av data"

@@ -19,11 +19,10 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.common.white
 	},
 	splashText: {
-		fontSize: '2rem'
+		fontSize: '2.4rem'
 	},
 
 	subText1 : {
-		marginTop: '30px',
 		fontSize: '1.5rem'
 	},
 
@@ -54,37 +53,41 @@ const Header = ({ className, ...rest }) => {
           md={6}
           xs={12}
         >
-          <Typography
-            className={classes.splashText}
-            color="textPrimary"
-          >
-            SignSafe - Covid19 Register.
-            {' '}
-            
-          </Typography>
-          <Typography
-            className = {classes.subText1}
-            color="textPrimary"
-          >
-            Velkommen til {id}
-          </Typography>
-					<Typography
-            variant="h4"
-            color="textPrimary"
-          >
-            Flott at du tar tiden til å registrere deg.
-          </Typography>
+          <Box
+						mt={5}
+					>
+						<Typography
+							className={classes.splashText}
+							color="textPrimary"
+						>
+							SignSafe - Covid19 Register.
+							{' '}
+						</Typography>
+					</Box>
+					<Box
+						mb={5}
+					>
+						<Typography
+							className = {classes.subText1}
+							color="textPrimary"
+						>
+							Velkommen til {id}
+						</Typography>
+						<Typography
+							variant="h4"
+							color="textPrimary"
+						>
+							Flott at du tar tiden til å registrere deg.
+						</Typography>
+					</Box>
+          
         </Grid>
         <Hidden smDown>
           <Grid
             item
             md={6}
           >
-            <img
-              alt="Cover"
-              className={classes.image}
-              src="/static/images/takk.png"
-            />
+            
           </Grid>
         </Hidden>
       </Grid>

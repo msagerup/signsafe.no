@@ -57,7 +57,7 @@ const TopBar = ({ className, ...rest }) => {
         
         <Box flexGrow={1} />
         <Divider className={classes.divider} />
-        <Button
+        {/* <Button
           color="secondary"
           // component="a"
           // href="https://material-ui.com/store/items/devias-kit-pro"
@@ -65,7 +65,7 @@ const TopBar = ({ className, ...rest }) => {
           size="small"
         >
           Bestill nå
-        </Button>
+        </Button> */}
       </Toolbar>
     </AppBar>
   );

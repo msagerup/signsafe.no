@@ -1,15 +1,18 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import {
   Avatar,
-  Button,
+	Button,
+	TextField,
   Box,
   Container,
   Grid,
   Typography,
   makeStyles
 } from '@material-ui/core';
+import Icon from '@material-ui/core/Icon';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -20,11 +23,15 @@ const useStyles = makeStyles(theme => ({
   avatar: {
     backgroundColor: theme.palette.secondary.main,
     color: theme.palette.secondary.contrastText
-  }
+	},
+	button: {
+    margin: theme.spacing(1),
+  },
 }));
 
 const Features = ({ className, ...rest }) => {
-  const classes = useStyles();
+	const classes = useStyles();
+	const history = useHistory();
 
   return (
     <div className={clsx(classes.root, className)} {...rest}>
@@ -88,6 +95,26 @@ const Features = ({ className, ...rest }) => {
                 </Box>
               </Box>
             </Grid>
+						{/* Test form */}
+						<Box 
+							display="flex" 
+							width='100%' 
+							alignItems="center"
+							justifyContent="center"
+							mt={6}
+      			>	
+							<Button
+							className={classes.button}
+							variant='outlined'
+							size="large"
+							endIcon={<Icon>send</Icon>}
+							onClick = {() => history.push('/app/covidreg/test1')}
+							>
+								<Typography color="secondary" variant='h5' >
+									Sjekk ut vår bruker registrering
+								</Typography>
+							</Button>
+					</Box>
           </Grid>
         </Box>
       </Container>

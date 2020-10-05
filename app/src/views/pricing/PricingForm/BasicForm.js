@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import * as Yup from 'yup';
 import { Formik } from 'formik';
 import {
@@ -16,16 +16,30 @@ import {
   TextField,
   Typography
 } from '@material-ui/core';
+import axios from 'axios';
 import { Alert } from '@material-ui/lab';
 import wait from 'src/utils/wait';
+import axiosInstance from 'src/utils/axios';
+import { result } from 'lodash';
 
-const BasicForm = () => {
-  const [isAlertVisible, setAlertVisible] = useState(false);
+const BasicForm = ({pakke}) => {
+	const [isAlertVisible, setAlertVisible] = useState(false);
+	const [response, setResponse] = useState({});
+	const [userName, setUsername]= useState('')
 
+	
 
   // Send form 
   const sendForm = async (values) => {
-   console.log('send form clikced', values)
+		const data = await axios.post(`https://europe-west1-signsafe-62b14.cloudfunctions.net/api/leads`, {
+			...values
+		}).then((result => {
+			setResponse(result)
+			setUsername(result.data.costumerInfo.firstName)
+			return result;
+		})).catch((err => {
+			console.log(err)
+		}))
   }
 
   return (
@@ -35,7 +49,7 @@ const BasicForm = () => {
         firstName: '',
         lastName: '',
         sendMessage: '',
-        option: 'test',
+        option: pakke,
         submit: null
       }}
       validationSchema={Yup.object().shape({
@@ -54,7 +68,8 @@ const BasicForm = () => {
         try {
           // NOTE: Make API request
           await sendForm(values)
-          resetForm();
+					resetForm();
+					setAlertVisible(true)
           setStatus({ success: true });
           setSubmitting(false);
         } catch (err) {
@@ -81,9 +96,9 @@ const BasicForm = () => {
               <Box mb={3}>
                 <Alert
                   onClose={() => setAlertVisible(false)}
-                  severity="info"
+                  severity={response.status == 200 ? 'success' : 'error'}
                 >
-                  This is an info alert - check it out!
+                  {response.status === 200 ? `Takk for interessen ${userName}` : 'Beklager, det er en server feil. Din beskjed er ikke registrert'}
                 </Alert>
               </Box>
             )}
@@ -155,7 +170,7 @@ const BasicForm = () => {
                     error={Boolean(touched.option && errors.option)}
                     fullWidth
                     helperText={touched.option && errors.option}
-                    label="Pakke"
+                    label="Modul"
                     name="option"
                     onBlur={handleBlur}
                     disabled

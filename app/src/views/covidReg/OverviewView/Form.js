@@ -406,7 +406,7 @@ const Form = ({className, ...rest}) => {
             setModalSpinnerState(true)
             await	sendForm(formValues)
             setModalSpinnerState(false)
-
+						setAlertVisible(true)
             setModalState(false)
 					}}
           variant="outlined"
@@ -426,8 +426,7 @@ const Form = ({className, ...rest}) => {
 				</Card>
         <Box mt={5}>
           {modalSpinnerState ? <CircularProgress /> :'' }
-        
-
+					
         </Box>
 			</Rodal>
 		</>

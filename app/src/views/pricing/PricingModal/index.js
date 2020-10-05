@@ -4,9 +4,6 @@ import PerfectScrollbar from 'react-perfect-scrollbar';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { useSnackbar } from 'notistack';
-import moment from 'moment';
-import { useSelector } from 'react-redux';
-import axios from 'axios';
 import {
   Box,
   Dialog,
@@ -18,21 +15,16 @@ import {
   IconButton,
   SvgIcon,
   Card,
-  CardHeader,
-  CardMedia
 } from '@material-ui/core';
 import PricingForm from '../PricingForm/BasicForm'
 
 import {
   XCircle as CloseIcon,
   ArrowRight as ArrowRightIcon,
-  Copy as CopyIcon,
-  Layout as LayoutIcon
 } from 'react-feather';
 
 import ActionButton from './ActionButton';
 
-import { pink } from '@material-ui/core/colors';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -58,44 +50,20 @@ const useStyles = makeStyles(theme => ({
 
 function PricingModal({ className, onClose, open, order, ...rest }) {
   const classes = useStyles();
-  // const dispatch = useDispatch();
   const { enqueueSnackbar } = useSnackbar();
   const [statusActive, setStatus] = useState(true);
-  const [menuItemCat, setMenuItemCat] = useState('');
+  const [modul, setModul] = useState(order.subTitle);
   
-  console.log('ORDER', order)
+ console.log(order)
 
-  //Change order status
-  const handleChangeStatus = (orderRef, status) => {
-    let newStatus;
-    axios
-      .post(
-        `https://europe-west1-hotel-roomservice.cloudfunctions.net/api/updateorder/dd/${orderRef}`,
-        {
-          status: status
-        }
-      )
-      .then(response => {
-        // console.log(response.data.updateStatus.status);
-        newStatus = response.data.updateStatus.status;
-        // setLoading(false);
-        // handleSubmitSuccess();
-        setStatus(!statusActive);
-      });
-
-    // console.log(statusActive);
-  };
-  
-
-  return (
-    
+  return (    
     <Dialog onClose={onClose} open={open} maxWidth="md" fullWidth {...rest}>
       <div className={classes.root}>
         <Box display="flex" justifyContent="space-between">
           <Typography variant="h3" color="textSecondary">
             {order.subTitle}
           </Typography>
-          <IconButton onClick={onClose}>-
+          <IconButton onClick={onClose}>
             <SvgIcon>
               <CloseIcon />
             </SvgIcon>
@@ -107,7 +75,7 @@ function PricingModal({ className, onClose, open, order, ...rest }) {
               <Divider />
               <PerfectScrollbar>
               <Box>
-                <PricingForm />
+                <PricingForm pakke={order.subTitle}/>
               </Box>
               </PerfectScrollbar>
             </Card>
@@ -118,24 +86,24 @@ function PricingModal({ className, onClose, open, order, ...rest }) {
             </Typography>
             <ActionButton
               icon={ArrowRightIcon}
-              onClick={() => setMenuItemCat('Warm Food')}
-              // disabled={menuItem.type !== 'Warm Food' ? false : true}
+              onClick={() => setModul('Warm Food')}
+              disabled={modul === '1 lokasjon / 1 QR kode' ? false : true}
             >
               {/* Status: {getStatusLabel('new')} */}
               1 LOKASJON
             </ActionButton>
             <ActionButton
               icon={ArrowRightIcon}
-              onClick={() => setMenuItemCat('Cold Food')}
-              // disabled={menuItem.type !== 'Cold Food' ? false : true}
+              onClick={() => setModul('Cold Food')}
+              disabled={modul !== '3 lokasjoner / 3 QR koder' ? true : false}
             >
               {/* Status: {getStatusLabel('inProcess')} */}
               3 LOKASJONER
             </ActionButton>
             <ActionButton
               icon={ArrowRightIcon}
-              onClick={() => setMenuItemCat('Snacks')}
-              // disabled={menuItem.type !== 'Snacks' ? false : true}
+              onClick={() => setModul('Snacks')}
+              disabled={modul !== '4-10 lokasjoner / 3-10 QR koder' ? true : false}
             >
               {/* Status: {getStatusLabel('toDelivery')} */}
               4-10 LOKASJONER
@@ -155,8 +123,6 @@ function PricingModal({ className, onClose, open, order, ...rest }) {
                 fullWidth = {true}
               >
               </TextField>
-              
-               
             </Box>
           </Grid>
         </Grid>
@@ -167,7 +133,7 @@ function PricingModal({ className, onClose, open, order, ...rest }) {
 
 PricingModal.propTypes = {
   className: PropTypes.string,
-  menuItem: PropTypes.object,
+  order: PropTypes.object,
   onClose: PropTypes.func,
   open: PropTypes.bool
 };
