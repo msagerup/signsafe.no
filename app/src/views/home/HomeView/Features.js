@@ -12,7 +12,7 @@ import {
   Typography,
   makeStyles
 } from '@material-ui/core';
-import Icon from '@material-ui/core/Icon';
+import SendIcon from '@material-ui/icons/Send';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -107,7 +107,7 @@ const Features = ({ className, ...rest }) => {
 							className={classes.button}
 							variant='outlined'
 							size="large"
-							endIcon={<Icon>send</Icon>}
+							endIcon={<SendIcon>send</SendIcon>}
 							onClick = {() => history.push('/app/covidreg/test1')}
 							>
 								<Typography color="secondary" variant='h5' >
