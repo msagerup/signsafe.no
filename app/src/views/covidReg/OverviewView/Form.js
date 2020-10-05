@@ -6,6 +6,8 @@ import * as Yup from 'yup';
 import Rodal from 'rodal';
 import 'rodal/lib/rodal.css';
 import { Formik } from 'formik';
+import clsx from 'clsx';
+
 import axios from 'axios'
 import {
   Box,
@@ -30,7 +32,9 @@ import { Alert } from '@material-ui/lab';
 import { closeModal } from 'src/slices/calendar';
 
 const useStyles = makeStyles((theme) => ({
-  root: {},
+  root: {
+	backgroundColor: theme.palette.common.black,
+  },
   action: {
     backgroundColor: theme.palette.common.white
 	},
@@ -55,7 +59,8 @@ const Form = ({className, ...rest}) => {
 	// Values from form inputs.
 	const [formValues, setFormValues] = useState({});
 	const [firstName, setFirstName] = useState('');
-	const[modalState, setModalState] = useState(false) 
+  const[modalState, setModalState] = useState(false) 
+  const [modalSpinnerState, setModalSpinnerState] = useState(false)
 	
 	
 
@@ -84,7 +89,7 @@ const Form = ({className, ...rest}) => {
   const sendForm = async (values) => {
     console.log('Dette er values ', values)
     setFirstName(values.firstName);
-    const data = await axios.post(`http://localhost:5000/signsafe-62b14/europe-west1/api/register/${id}`, {
+    const data = await axios.post(`https://europe-west1-signsafe-62b14.cloudfunctions.net/api/register/${id}`, {
       name: values.firstName + ' ' + values.lastName,
       phone: values.phone,
       other: values.other,
@@ -141,11 +146,11 @@ const Form = ({className, ...rest}) => {
 				
       }) => {
         try {
-					
-					// Save values to storage
-					values.visitName = id
-					localStorage.setItem('formValues', JSON.stringify(values));
-					// Send data to database.
+		
+          // Save values to storage
+          values.visitName = id
+          localStorage.setItem('formValues', JSON.stringify(values));
+          // Send data to database.
           await sendForm(values)
           setStatus({ success: true });
           setSubmitting(false);
@@ -362,17 +367,20 @@ const Form = ({className, ...rest}) => {
 		{/* Modal */}
 		<>
 			<Rodal
+        className={clsx(classes.root, className)}
+      {...rest}
 				width = {370}
-				height = {300}
+				height = {500}
 				// measure = 'px'
 				visible={modalState}
 				onClose={hideModal} >
+				<Card>
 				<CardActionArea>
 					<CardContent>
-						<Typography  color="primary" gutterBottom variant="h1" component="h1" style={{textAlign: 'left'}} >
+						<Typography   gutterBottom variant="h1" component="h1" style={{textAlign: 'left' }} >
 							Velkommen tilbake!
 						</Typography>
-						<Typography variant="body1" color="textSecondary" component="p" style={{textAlign: 'left' , marginBottom: '15px'}}>
+						<Typography variant="body1" color="textSecondary" component="p" style={{textAlign: 'left' , marginBottom: '15px', marginBottom: '40px'}}>
 							Hold my beer! I got this! :)
 						</Typography>
 						<Typography variant="body2" color="primary" component="p" style={{textAlign: 'left'}}>
@@ -387,7 +395,7 @@ const Form = ({className, ...rest}) => {
 						<Typography variant="body2" color="primary" component="p" style={{textAlign: 'left'}}>
 							Telefon: {formValues.phone}
 						</Typography>
-						<Typography variant="body2" color="primary" component="p" style={{textAlign: 'left'}}>
+						<Typography variant="body2" color="primary" component="p" style={{textAlign: 'left', marginBottom: '30px'}}>
 							Du besøker: {formValues.visitName}
 						</Typography>
 					</CardContent>
@@ -395,21 +403,32 @@ const Form = ({className, ...rest}) => {
 				<CardActions>
 					<Button
 					onClick= {async () => {
-					await	sendForm(formValues)
-					setModalState(false)
+            setModalSpinnerState(true)
+            await	sendForm(formValues)
+            setModalSpinnerState(false)
+
+            setModalState(false)
 					}}
-					size="small" color="primary">
+          variant="outlined"
+          color='primary'
+					size="large">
 						Send i vei!
 					</Button>
 					<Button 
 					 onClick={hideModal}
-					 size="small" color="primary">
+					 size="large">
 						Jeg vil endre info
 					</Button>
 					{/* <Button size="small" color="primary">
 						din data
 					</Button> */}
 				</CardActions>
+				</Card>
+        <Box mt={5}>
+          {modalSpinnerState ? <CircularProgress /> :'' }
+        
+
+        </Box>
 			</Rodal>
 		</>
 		</>
