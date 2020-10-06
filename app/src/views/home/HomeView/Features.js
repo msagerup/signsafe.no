@@ -96,25 +96,7 @@ const Features = ({ className, ...rest }) => {
               </Box>
             </Grid>
 						{/* Test form */}
-						<Box 
-							display="flex" 
-							width='100%' 
-							alignItems="center"
-							justifyContent="center"
-							mt={6}
-      			>	
-							<Button
-							className={classes.button}
-							variant='outlined'
-							size="large"
-							endIcon={<SendIcon>send</SendIcon>}
-							onClick = {() => history.push('/app/covidreg/test1')}
-							>
-								<Typography color="secondary" variant='h5' >
-									Sjekk ut vår bruker registrering
-								</Typography>
-							</Button>
-					</Box>
+						
           </Grid>
         </Box>
       </Container>

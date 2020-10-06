@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useHistory } from 'react-router-dom';
+import IconButton from '@material-ui/core/IconButton';
 import clsx from 'clsx';
 import {
   Box,
@@ -8,6 +10,7 @@ import {
   Typography,
   makeStyles
 } from '@material-ui/core';
+import SendIcon from '@material-ui/icons/Send';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -17,11 +20,15 @@ const useStyles = makeStyles((theme) => ({
   },
   browseButton: {
     marginLeft: theme.spacing(2)
+  },
+  iconSize: {
+    fontSize: '3rem'
   }
 }));
 
 const CTA = ({ className, ...rest }) => {
   const classes = useStyles();
+  const history = useHistory()
 
   return (
     <div
@@ -34,14 +41,14 @@ const CTA = ({ className, ...rest }) => {
           align="center"
           color="textPrimary"
         >
-          Ready to start building?
+          Prøv applikasjonen 
         </Typography>
         <Typography
           variant="h1"
           align="center"
           color="secondary"
         >
-          Download Devias Material Kit today.
+          Trykk på pilen nedenfor
         </Typography>
         <Box
           mt={6}
@@ -49,14 +56,17 @@ const CTA = ({ className, ...rest }) => {
           justifyContent="center"
           alignItems="center"
         >
-          <Button
-            color="secondary"
-            component="a"
-            href="https://material-ui.com/store/items/devias-kit-pro"
-            variant="contained"
-          >
-            Get the kit
-          </Button>
+        <IconButton
+        color="secondary"
+        endIcon={<SendIcon>send</SendIcon>}
+        onClick = {() => history.push('/app/covidreg/test1')}
+        variant="contained"
+      >
+        <SendIcon
+        className={classes.iconSize}
+        />
+        </IconButton>
+          
         </Box>
       </Container>
     </div>
