@@ -14,6 +14,3 @@ exports.testing = async (req, res) => {
   res.json({result: `Message with ID: ${writeResult.id} added.`});
 };
 
-exports.hello = async(req, res) => {
-	res.send('hello')
-}
