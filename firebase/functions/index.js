@@ -7,41 +7,16 @@ const serviceAccount = require('./key/key.json')
 const admin = require('firebase-admin');
 app.use(cors);
 
-
-// const {dialogflowWebhook, dialogflowGateway} = require('./handlers/chatbot')
-
-
-// // Dialog Flow
-// admin.initializeApp({
-	// 	credential: admin.credential.cert(serviceAccount),
-	// 	databaseURL: "https://signsafe-62b14.firebaseio.com"
-	// })
-	
-	
-	// exports.dialogflowGateway = functions.https.onRequest((request, response) => {
-		//   cors(request, response, async () => {
-			//     const { queryInput, sessionId } = request.body;
-			
-			// 		try {
-				
-				//     const sessionClient = new SessionsClient({ credentials: serviceAccount  });
-				//     const session = sessionClient.sessionPath('signsafe-62b14', sessionId);
-				
-				
-				//     const responses = await sessionClient.detectIntent({ session, queryInput});
-				
-				//     const result = responses[0].queryResult;
-				
-				// 		response.send(result);
-				// 		} catch (error) {
-					// 			console.log(error)
-					// 		}
-					//   });
-					// });
 					
-					
-const {register, addUser} = require('./handlers/test');
+const {register, addUser} = require('./handlers/users');
 const {costumerLeads} = require('./handlers/order_info');
+const {testing,hello} = require('./handlers/test')
+
+app.post('/test', testing)
+app.post('/hello', hello)
+
+
+
 
 
 // todo: Import rutes
