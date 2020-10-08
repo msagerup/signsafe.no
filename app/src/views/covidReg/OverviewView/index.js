@@ -1,5 +1,4 @@
-import React, {useEffect} from 'react';
-
+import React, {useEffect, useState} from 'react';
 import {
   Box,
   Container,
@@ -15,6 +14,9 @@ import Header from './Header';
 import CovidForm from './CovidForm';
 // Framer 
 import PageContainer from '../../../FramerMotion/covidRegPage/PageContainer';
+import Tester from '../../../FramerMotion/covidRegPage/tester'
+import Splash from '../../../FramerMotion/covidRegPage/Splash'
+
 
 
 const useStyles = makeStyles((theme) => ({
@@ -22,65 +24,43 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.background.dark,
     paddingTop: theme.spacing(3),
     paddingBottom: theme.spacing(3)
-  }
+	},
+	test: {
+		color: 'red'
+	}
 }));
 
-const OverviewView = () => {
-	const classes = useStyles();
-	const [animate, cycle] = useCycle(
-    { scale: 1, rotate: 0 },
-    { scale: 1.0, rotate: 90 },
-    { scale: 2, rotate: 90 },
-    { scale: 9, rotate: 90 }
-	);
-	
+const variants = {
+  open: {
+    transition: { staggerChildren: 0.07, delayChildren: 0.2 }
+  },
+  closed: {
+    transition: { staggerChildren: 0.05, staggerDirection: -1 }
+  }
+};
 
+
+const OverviewView = () => {
+	const [show, handleShow] = useState(false)
+	const [show2, handleShow2] = useState(false)
+
+	const classes = useStyles();
   return (
+		
     <div
       // className={classes.root}
       title="SignSafe Covid-19"
 	>		
-			<Grid
-				style = {{height: '500px'}}
-				container
-				direction="row-reverse"
-				justify="center"
-				alignItems="center"
-			>
-				<Grid item>
-					<Frame
-						animate={
-							{
-							scale: [1, 2, 2, 1, 100],
-							rotate: [0, 0, 270, 270, 0],
-							borderRadius: ["20%", "20%", "50%", "50%", "20%"]
-							}}
-						transition={{
-							duration: 2,
-							ease: "easeInOut",
-							times: [0, 0.2, 0.5, 0.8, 1],
-							repeatDelay: 1
-						}}
-						onTap={() => cycle()}
-						size={150}
-						radius={30}
-						background={"#9ccc65"}
-					>
-						{/* <PageContainer /> */}
-						
-					</Frame>
-			</Grid>
-
-      {/* <Container maxWidth="lg"> */}
-				{/* <PageContainer /> */}
-        {/* <Header />
-        <Box mt={3}>
-          <CovidForm />
-        </Box> */}
-      {/* </Container> */}
-			</Grid>
+			<Splash />
     </div>
   );
 };
 
 export default OverviewView;
+
+
+
+// Example
+// <Box mt={3}>
+// {show ? <Tester /> : ''}
+// </Box> 

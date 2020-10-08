@@ -7,7 +7,7 @@ import Rodal from 'rodal';
 import 'rodal/lib/rodal.css';
 import { Formik } from 'formik';
 import clsx from 'clsx';
-
+import Header from './Header'
 import axios from 'axios'
 import {
   Box,
@@ -77,14 +77,14 @@ const Form = ({className, ...rest}) => {
 			if(convertFormValues) {
 				let idFromStorage = convertFormValues.visitName
 				if(idFromStorage === id) {
-					setModalState(true)
+					// TEMP DISABLED. should be yes, true
+					setModalState(false)
 				}
 		}
 	}, [setFormValues])
 
 
-	console.log('dette er values from storage', {formValues})
-	console.log('ID FROM URL', id)
+
 
   const sendForm = async (values) => {
     console.log('Dette er values ', values)
@@ -117,6 +117,7 @@ const Form = ({className, ...rest}) => {
 
   return (
 		<>
+		<Header />
     <Formik
       initialValues={{
         email: '',

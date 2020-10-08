@@ -16,10 +16,13 @@ import axios from 'src/utils/axios';
 import useIsMountedRef from 'src/hooks/useIsMountedRef';
 import Form from './Form';
 import CookiesNotification from '../../../components/CookiesNotification'
-
+import Header from './Header'
+import Page from '../../../components/Page'
 
 const useStyles = makeStyles((theme) => ({
-  root: {},
+  root: {
+		backgroundColor: theme.palette.background.dark,
+	},
   item: {
     padding: theme.spacing(3),
     textAlign: 'center',
@@ -68,30 +71,32 @@ const CovidForm = ({ className, ...rest }) => {
   }
 
   return (
-    <>
-    <Card
-      className={clsx(classes.root, className)}
-      {...rest}
-    >
-      <Grid
-        alignItems="center"
-        container
-				justify="center"
-      >
-        <Grid
-          className={classes.item}
-					item
-					lg={12}
-          md={12}
-          sm={12}
-          xs={12}
-        >
-          <Form />
-        </Grid>        
-      </Grid>
-    </Card>
-      <CookiesNotification />
-    </>
+    <Page
+		className={classes.root}
+		>
+			<Card
+				className={clsx(classes.root, className)}
+				{...rest}
+			>
+				<Grid
+					alignItems="center"
+					container
+					justify="center"
+				>
+					<Grid
+						className={classes.item}
+						item
+						lg={12}
+						md={12}
+						sm={12}
+						xs={12}
+					>
+						<Form />
+					</Grid>        
+				</Grid>
+			</Card>
+				<CookiesNotification />
+    </Page>
   );
 };
 
