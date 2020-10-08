@@ -210,6 +210,7 @@ const Form = ({className, ...rest}) => {
 											xs={12} 
 										>
 											<TextField
+											autoFocus
 												error={Boolean(touched.firstName && errors.firstName)}
 												fullWidth
 												helperText={touched.firstName && errors.firstName}
@@ -269,7 +270,6 @@ const Form = ({className, ...rest}) => {
 									</Box>
 									<Box mt={2}>
 										<TextField
-                      autoFocus
 											error={Boolean(touched.other && errors.other)}
 											fullWidth
 											helperText={touched.other && errors.other}

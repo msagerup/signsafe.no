@@ -12,7 +12,8 @@ import {
 	makeStyles,
 	Grid
 } from '@material-ui/core';
-
+import Form from '../../views/covidReg/OverviewView/CovidForm'
+import CovidForm from '../../views/covidReg/OverviewView/CovidForm';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -47,7 +48,9 @@ const sidebar = {
     transition: {
       type: "spring",
       stiffness: 30,
-      restDelta: 2
+			restDelta: 2,
+			when: 'beforeChildren',
+			staggerChildren: 20
     }
   }),
   closed: {
@@ -61,7 +64,24 @@ const sidebar = {
   }
 };
 
-
+// Motion values
+const childLeft = {
+	open: {
+		opacity: 1,
+		delay: 3,
+		y: 0
+	},
+	closed: {
+		opacity: 1,
+		y: '-200vw',
+		transition: {
+			delay: 0.2,
+			type: 'spring',
+			stiffness: 100
+			
+		},
+	}
+}
 
 
 const Splash = ({className, ...rest}) => {
@@ -97,7 +117,13 @@ const Splash = ({className, ...rest}) => {
       <motion.div className={classes.splasher} variants={sidebar} />
 		
       {/* <Navigation /> */}
-			<AnimatedForm />
+			{/* <AnimatedForm /> */}
+			<motion.div
+				variants={childLeft}
+			
+			>
+				<CovidForm />
+			</motion.div>
     </motion.nav>
   );
 };

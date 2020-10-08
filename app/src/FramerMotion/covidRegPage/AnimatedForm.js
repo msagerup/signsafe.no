@@ -4,6 +4,7 @@ import {
   Box,
   Container
 } from '@material-ui/core';
+import CovidForm from '../../views/covidReg/OverviewView/CovidForm'
 import { motion, useCycle } from "framer-motion";
 import { useRef } from "react";
 import { useDimensions } from "../../utils/use-dimentions";
@@ -21,14 +22,16 @@ const variants = {
   }
 };
 
-const Navigation = () => (
-  <motion.div style={{position: 'absolute'}} variants={variants}>
-    {itemIds.map((i) => (
-      <MenuItem i={i} key={i} />
-    ))}
+const AnimatedForm = () => (
+	<motion.div style={{}} 
+	variants={variants}
+	initial='hidden'
+	animate='visable'
+	>
+      <CovidForm />
   </motion.div>
 );
 
 const itemIds = [0];
 
-export default Navigation
+export default AnimatedForm
