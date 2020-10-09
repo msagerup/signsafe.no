@@ -17,12 +17,7 @@ const items = [
   {
     title: 'Vår Policy',
     href: '/docs/policy'
-  },
-  {
-    title: 'Getting Started',
-    href: '/docs/getting-started'
   }
-  
 ];
 
 function renderNavItems({ items, depth = 0 }) {

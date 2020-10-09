@@ -133,9 +133,9 @@ const Form = ({className, ...rest}) => {
         email: Yup.string().email().required('Please entere a valid e-mail'),
         phone: Yup.number().required('Please enter your phone number'),
         firstName: Yup.string().required('Required'),
-				lastName: Yup.string().required('Required'),
-				// secret: Yup.string(),
-				other: Yup.string(),
+		lastName: Yup.string().required('Required'),
+		// secret: Yup.string(),
+		other: Yup.string(),
         policy: Yup.boolean().oneOf([true], 'This field must be checked')
       })}
       onSubmit={async (values, {
@@ -334,7 +334,7 @@ const Form = ({className, ...rest}) => {
 											{' '}
 											<Link
 												component="a"
-												href="#"
+												href="/docs/policy"
 												color="secondary"
 											>
 												SignSave's policy
