@@ -20,7 +20,7 @@ const HomeView = () => {
       <Features />
       <Testimonials />
       <CTA />
-      <FAQS /> 
+      {/* <FAQS />  */}
     </Page>
   );
 };

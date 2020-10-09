@@ -50,11 +50,11 @@ const TopBar = ({ onMobileNavOpen }) => {
             <MenuIcon />
           </IconButton>
         </Hidden>
-        <Hidden mdDown>
+        {/* <Hidden mdDown>
           <RouterLink to="/">
             <Logo />
           </RouterLink>
-        </Hidden>
+        </Hidden> */}
         <Box
           ml={2}
           flexGrow={1}
@@ -68,7 +68,7 @@ const TopBar = ({ onMobileNavOpen }) => {
           underline="none"
           variant="body2"
         >
-          Main Page
+          Home  
         </Link>
       </Toolbar>
     </AppBar>
