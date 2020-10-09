@@ -1,136 +1,205 @@
-import React, {useState, useEffect} from 'react'
-import AnimatedForm from './AnimatedForm'
-import { Frame } from "framer"
-import {
-  Box,
-  Container
-} from '@material-ui/core';
-import { motion, useCycle } from "framer-motion";
-import { useRef } from "react";
-import { useDimensions } from "../../utils/use-dimentions";
-import {
-	makeStyles,
-	Grid
-} from '@material-ui/core';
-import Form from '../../views/covidReg/OverviewView/CovidForm'
-import CovidForm from '../../views/covidReg/OverviewView/CovidForm';
+import * as React from "react";
+import { render } from "react-dom";
+import { Frame, Size, Stack } from "framer";
+import { motion } from "framer-motion";
+import styled from "@emotion/styled";
+import { jsx, css } from "@emotion/core";
+import {}
+// import "./styles.css";
 
+import { addPropertyControls, ControlType } from "framer";
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    backgroundColor: theme.palette.background.dark,
-    paddingTop: theme.spacing(3),
-    paddingBottom: theme.spacing(3)
-	},
-	splasher: {
-		position: 'absolute',
-		top: 0,
-		left: 0,
-		bottom: 0,
-		width: '100vw',
-		background: '#AED581',
-	}
-}));
+// const list = {
+//   hidden: {
+//     opacity: 0,
+//     x: -100,
+//     transition: { when: "afterChildren" },
+//   },
+//   visible: {
+//     opacity: 1,
+//     x: 0,
+//     transition: { when: "beforeChildren" },
+//   },
+// }
 
-let currentWidth,
-currentHeight
-console.log('currentWidth', currentWidth)
-function getWindowDimensions() {
-	const { innerWidth: width, innerHeight: height } = window;
-	currentWidth = width
-	currentHeight = height
-}
+// // Child variants
+// const item ={
+//   hidden: {
+//     opacity: 0,
+//     x: -100,
+//     transition: { when: "afterChildren" },
+//   },
+//   visible: {
+//     opacity: 1,
+//     x: 0,
+//     transition: { when: "beforeChildren" },
+//   },
+// }
 
+// export function MyComponent() {
+//   const variants = {
+//     hidden: (custom) => ({
+//       opacity: 0,
+//       transition: { delay: custom * 0.5 },
+//     }),
+//   }
+//   return (
+//     <Stack>
+//       <Frame
+//         custom={0}
+//         variants={variants}
+//         animate={"hidden"}
+//       />
+//       <Frame
+//         custom={1}
+//         variants={variants}
+//         animate={"hidden"}
+//       />
+//       <Frame
+//         custom={2}
+//         variants={variants}
+//         animate={"hidden"}
+//       />
+//     </Stack>
+//   )
+// }
 
-const sidebar = {
-  open: (height = 1000) => ({
-    clipPath: `circle(${height * 2 + 200}px)`,
-    transition: {
-      type: "spring",
-      stiffness: 30,
-			restDelta: 2,
-			when: 'beforeChildren',
-			staggerChildren: 20
+const Root = styled.div`
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const Intro = () => {
+  const variants = {
+    hidden: {
+      opacity: 0,
+      background: "#282C34",
+      transition: {
+        // duration: 20.5
+        when: "afterChildren",
+        staggerChildren: 0.3
+      },
+      // size: '0%',
+      height: "10%",
+      width: "100vw",
+      borderRadius: ""
+    },
+    visible: {
+      opacity: 1,
+      background: "#282C34",
+      transition: {
+        type: "spring",
+        damping: 80,
+        mass: 4.6,
+        times: 1,
+        repeatDelay: 1,
+        stiffness: 1200,
+        when: "beforeChildren",
+        staggerChildren: 0.7
+      },
+      width: "15vw",
+      height: "10%",
+      scale: 1,
+      // height: [null, "10%", '60%', '60px'],
+      // borderRadius: [null, "20%", "50%", "20%"]
+      borderRadius: "0%"
     }
-  }),
-  closed: {
-    clipPath: "circle(30px at 40px 40px)",
-    transition: {
-      delay: 0.5,
-      type: "spring",
-      stiffness: 400,
-      damping: 30
+  };
+
+  const rotate = {
+    hidden: {
+      x: 0,
+      opacity: 0,
+      background: "#282C34",
+      // height: "10vw",
+      height: "109px",
+      width: "167px",
+      scale: 1
+
+      // transition: { delay: 10 },
+    },
+    visible: {
+      opacity: 100,
+      scale: 3,
+      rotate:180,
+      borderRadius: '50%',
+      
+
+      // background: "#282C34",
+      // scale: 3,
+      // rotate: 405,
+      // borderRadius: '50%',
+      y: 0,
+      transition:{
+        type: "spring",
+        damping: 20,
+        mass: 2.6,
+        times: 1,
+        repeatDelay: 1,
+        stiffness: 1400,
+      },
     }
-  }
-};
+  };
 
-// Motion values
-const childLeft = {
-	open: {
-		opacity: 1,
-		delay: 3,
-		y: 0
-	},
-	closed: {
-		opacity: 1,
-		y: '-200vw',
-		transition: {
-			delay: 0.2,
-			type: 'spring',
-			stiffness: 100
-			
-		},
-	}
-}
+  const splash = {
+    hidden: {
+      x: 0,
+      opacity: 0,
+      background: "#282C34",
+      // height: "10vw",
+      height: "109px",
+      width: "167px",
+      scale: 3
 
+      // transition: { delay: 10 },
+    },
+    visible: {
+      opacity: 100,
+      scale: 10,
+      // rotate:180,
+      borderRadius: '0%',
+      
 
-const Splash = ({className, ...rest}) => {
-  const [isOpen, toggleOpen] = useCycle(false, true);
-  const containerRef = useRef(null);
-	const { height } = useDimensions(containerRef);
-	const [windowDimensions, setWindowDimensions] = useState(getWindowDimensions());
-	const classes = useStyles();
-
+      // background: "#282C34",
+      // scale: 3,
+      // rotate: 405,
+      // borderRadius: '50%',
+      y: 0,
+      transition:{
+        type: "spring",
+        damping: 2044,
+        bounce: 0.25,
+        // mass: 25.6,
+        // times: 1,
+        repeatDelay: 1,
+        stiffness: 1400,
+      },
+    }
+	};
 	
-
-
-	useEffect(() => {
-    function handleResize() {
-      setWindowDimensions(getWindowDimensions());
-    }
-		setTimeout(() => {
-			toggleOpen()
-		}, 200)
-    window.addEventListener('resize', handleResize);
-		return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
-	console.log(windowDimensions, 'this is height')
+	// TODO ! CHange the last animition from spring to ease.
 
   return (
-    <motion.nav
-      initial={false}
-      animate={isOpen ? "open" : "closed"}
-      custom={height}
-      ref={containerRef}
-    >
-      <motion.div className={classes.splasher} variants={sidebar} />
-		
-      {/* <Navigation /> */}
-			{/* <AnimatedForm /> */}
-			<motion.div
-				variants={childLeft}
-			
-			>
-				<CovidForm />
-			</motion.div>
-    </motion.nav>
+    <>
+      <Frame initial="hidden" animate="visible" variants={variants}>
+        <Frame variants={rotate} />
+        <Frame variants={splash} />
+
+      </Frame>
+    </>
   );
 };
 
+const Splash = () => {
+  return (
+    <Root>
+      <Intro />
+      <h2>hello</h2>
+    </Root>
+  );
+};
 
-
-
-
-
-export default Splash
+export default Splash;

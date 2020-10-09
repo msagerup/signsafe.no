@@ -16,7 +16,7 @@ import CovidForm from './CovidForm';
 import PageContainer from '../../../FramerMotion/covidRegPage/PageContainer';
 import Tester from '../../../FramerMotion/covidRegPage/tester'
 import Splash from '../../../FramerMotion/covidRegPage/Splash'
-
+import {RemoveScrollBar} from 'react-remove-scroll-bar';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -50,8 +50,9 @@ const OverviewView = () => {
     <div
       // className={classes.root}
       title="SignSafe Covid-19"
-	>		
+	>	
 			<Splash />
+			
     </div>
   );
 };
