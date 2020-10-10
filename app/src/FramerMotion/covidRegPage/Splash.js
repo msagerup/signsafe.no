@@ -1,68 +1,8 @@
-import * as React from "react";
-import { render } from "react-dom";
-import { Frame, Size, Stack } from "framer";
+import React, {useState, useLayoutEffect} from "react";
+
 import { motion } from "framer-motion";
 import styled from "@emotion/styled";
-import { jsx, css } from "@emotion/core";
-import {}
-// import "./styles.css";
 
-import { addPropertyControls, ControlType } from "framer";
-
-// const list = {
-//   hidden: {
-//     opacity: 0,
-//     x: -100,
-//     transition: { when: "afterChildren" },
-//   },
-//   visible: {
-//     opacity: 1,
-//     x: 0,
-//     transition: { when: "beforeChildren" },
-//   },
-// }
-
-// // Child variants
-// const item ={
-//   hidden: {
-//     opacity: 0,
-//     x: -100,
-//     transition: { when: "afterChildren" },
-//   },
-//   visible: {
-//     opacity: 1,
-//     x: 0,
-//     transition: { when: "beforeChildren" },
-//   },
-// }
-
-// export function MyComponent() {
-//   const variants = {
-//     hidden: (custom) => ({
-//       opacity: 0,
-//       transition: { delay: custom * 0.5 },
-//     }),
-//   }
-//   return (
-//     <Stack>
-//       <Frame
-//         custom={0}
-//         variants={variants}
-//         animate={"hidden"}
-//       />
-//       <Frame
-//         custom={1}
-//         variants={variants}
-//         animate={"hidden"}
-//       />
-//       <Frame
-//         custom={2}
-//         variants={variants}
-//         animate={"hidden"}
-//       />
-//     </Stack>
-//   )
-// }
 
 const Root = styled.div`
   width: 100vw;
@@ -70,136 +10,203 @@ const Root = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+	padding-top: 0px;
 `;
 
-const Intro = () => {
-  const variants = {
-    hidden: {
-      opacity: 0,
-      background: "#282C34",
-      transition: {
-        // duration: 20.5
-        when: "afterChildren",
-        staggerChildren: 0.3
-      },
-      // size: '0%',
-      height: "10%",
-      width: "100vw",
-      borderRadius: ""
-    },
-    visible: {
-      opacity: 1,
-      background: "#282C34",
-      transition: {
-        type: "spring",
-        damping: 80,
-        mass: 4.6,
-        times: 1,
-        repeatDelay: 1,
-        stiffness: 1200,
-        when: "beforeChildren",
-        staggerChildren: 0.7
-      },
-      width: "15vw",
-      height: "10%",
-      scale: 1,
-      // height: [null, "10%", '60%', '60px'],
-      // borderRadius: [null, "20%", "50%", "20%"]
-      borderRadius: "0%"
-    }
-  };
+const SplashBackground = styled.div`
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	width: 300px;
+	background: #fff;
 
-  const rotate = {
-    hidden: {
-      x: 0,
-      opacity: 0,
-      background: "#282C34",
-      // height: "10vw",
-      height: "109px",
-      width: "167px",
-      scale: 1
+`;
 
-      // transition: { delay: 10 },
-    },
-    visible: {
-      opacity: 100,
-      scale: 3,
-      rotate:180,
-      borderRadius: '50%',
-      
 
-      // background: "#282C34",
-      // scale: 3,
-      // rotate: 405,
-      // borderRadius: '50%',
-      y: 0,
-      transition:{
-        type: "spring",
-        damping: 20,
-        mass: 2.6,
-        times: 1,
-        repeatDelay: 1,
-        stiffness: 1400,
-      },
-    }
-  };
+const variants = {
+	hidden: {
+		opacity: 0,
+		background: "#282C34",
+		transition: {
+			// duration: 20.5
+			when: "afterChildren",
+			staggerChildren: 0.3
+		},
+		// size: '0%',
+		height: "1vh",
+		width: "100vw",
+		borderRadius: ""
+	},
+	visible: (height = 1000, width = 1000) =>  ({
+		opacity: 1,
+		background: "#282C34",
+		transition: {
+			type: "spring",
+			damping: 80,
+			mass: 5.6,
+			times: 1,
+			delay: 0.4,
+			repeatDelay: 1,
+			stiffness: 1200,
+			when: "beforeChildren",
+			staggerChildren: 0.4
+		},
+		width: "15vw",
+		height: "3vh",
+		scale: 3,
+		// height: [null, "10%", '60%', '60px'],
+		// borderRadius: [null, "20%", "50%", "20%"]
+		borderRadius: "0%"
+	})
+};
 
-  const splash = {
-    hidden: {
-      x: 0,
-      opacity: 0,
-      background: "#282C34",
-      // height: "10vw",
-      height: "109px",
-      width: "167px",
-      scale: 3
+const rotate = {
+	hidden: {
+		x: 0,
+		opacity: 0,
+		background: "#282C34",
+		width: "15vw",
+		height: "3vh",
+		scale: 1,
+		// originX: 0.5,
+		// originY: 0.5,
 
-      // transition: { delay: 10 },
-    },
-    visible: {
-      opacity: 100,
-      scale: 10,
-      // rotate:180,
-      borderRadius: '0%',
-      
-
-      // background: "#282C34",
-      // scale: 3,
-      // rotate: 405,
-      // borderRadius: '50%',
-      y: 0,
-      transition:{
-        type: "spring",
-        damping: 2044,
-        bounce: 0.25,
-        // mass: 25.6,
-        // times: 1,
-        repeatDelay: 1,
-        stiffness: 1400,
-      },
-    }
-	};
+		// transition: { delay: 10 },
+	},
+	visible: {
+		opacity: 100,
 	
+		// originX: 0.5,
+		// originY: 0.5,
+		scale: 2,
+		// scale: 2,
+		background: "#282C34",
+		clipPath: `circle(200px at center)`,
+		height: "3vh",
+		width: "15vw",
+		// height: "20vh",
+		// width: '5vw',
+		// height: '10vh',
+		// originX: 0.5,
+		// originY: 0.5,
+		// 
+		borderRadius: '0%',
+		// // width: "15vw",
+		// width: '142.857143%',
+		transition:{
+			type: "spring",
+			damping: 20,
+			mass: 1.6,
+			times: 1,
+			repeatDelay: 1,
+			stiffness: 1400,		
+		},
+		
+	}
+};
+
+const splash = {
+	hidden: {
+		x: 0,
+		opacity: 0,
+		background: "#282C34",
+		scale: 1,
+		// originX: 0.5,
+		// originY: 0.5,
+width: "20vw",
+		height: "10vh",
+		// transition: { delay: 10 },
+	},
+	visible: {
+		opacity: 100,
+		// originX: 0.5,
+		// originY: 0.5,
+		scale: 8,
+		// scale: 2,
+		background: "#282C34",
+		// width: "100%",
+		// height: "100%",
+		// clipPath: `circle(200px at center)`,
+		rotate: 30,
+
+		// height: "20vh",
+		// width: '5vw',
+		// height: '10vh',
+		// originX: 0.5,
+		// originY: 0.5,
+		// 
+		borderRadius: '0%',
+		// // width: "15vw",
+		// width: '142.857143%',
+		transition:{
+			type: "spring",
+			damping: 20,
+			mass: 7.6,
+			times: 1,
+			repeatDelay: 1,
+			stiffness: 1400,		
+		},
+		
+	}
+};
+
+
+
+
+
+
+
+const Intro = () => {
+
 	// TODO ! CHange the last animition from spring to ease.
 
   return (
     <>
-      <Frame initial="hidden" animate="visible" variants={variants}>
-        <Frame variants={rotate} />
-        <Frame variants={splash} />
+      <motion.div initial="hidden" animate="visible" variants={variants} >
+				{/* /ref= {containerRef} */}
+        {/* <Frame variants={rotate} /> */}
+        <motion.div variants={rotate} style={{position: 'absolute',}} />
 
-      </Frame>
+		
+				<motion.div variants={splash} />
+			
+        {/* <Frame variants={splash}/>  */}
+
+      </motion.div>
     </>
   );
 };
 
 const Splash = () => {
+	// const containerRef = useRef(null);
+	// const [width, height] = useWindowSize(containerRef);
   return (
     <Root>
       <Intro />
-      <h2>hello</h2>
     </Root>
   );
 };
+
+
+
+// function useWindowSize() {
+//   const [size, setSize] = useState([0, 0]);
+//   useLayoutEffect(() => {
+//     function updateSize() {
+//       setSize([window.innerWidth, window.innerHeight]);
+//     }
+//     window.addEventListener('resize', updateSize);
+//     updateSize();
+//     return () => window.removeEventListener('resize', updateSize);
+//   }, []);
+//   return size;
+// }
+
+// function ShowWindowDimensions(props) {
+// 	const [width, height] = useWindowSize();
+// 	console.log(width, height)
+//   return <span>Window size: {width} x {height}</span>;
+// }
 
 export default Splash;

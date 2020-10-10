@@ -18,10 +18,12 @@ import Form from './Form';
 import CookiesNotification from '../../../components/CookiesNotification'
 import Header from './Header'
 import Page from '../../../components/Page'
+import TopBar from '../../../layouts/DocsLayout/TopBar'
 
 const useStyles = makeStyles((theme) => ({
   root: {
 		backgroundColor: theme.palette.background.dark,
+		position: 'relative'
 	},
   item: {
     padding: theme.spacing(3),
@@ -73,7 +75,12 @@ const CovidForm = ({ className, ...rest }) => {
   return (
     <Page
 		className={classes.root}
-		>
+		>	
+			<Box
+			pb={7}
+			>
+				<TopBar />
+		  </Box>
 			<Card
 				className={clsx(classes.root, className)}
 				{...rest}

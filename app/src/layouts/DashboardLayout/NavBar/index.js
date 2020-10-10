@@ -298,7 +298,7 @@ const NavBar = ({ onMobileClose, openMobile }) => {
       flexDirection="column"
     >
       <PerfectScrollbar options={{ suppressScrollX: true }}>
-        <Hidden lgUp>
+        {/* <Hidden lgUp>
           <Box
             p={2}
             display="flex"
@@ -308,7 +308,7 @@ const NavBar = ({ onMobileClose, openMobile }) => {
               <Logo />
             </RouterLink>
           </Box>
-        </Hidden>
+        </Hidden> */}
         <Box p={2}>
           <Box
             display="flex"

@@ -9,6 +9,7 @@ import { Formik } from 'formik';
 import clsx from 'clsx';
 import Header from './Header'
 import axios from 'axios'
+import Page from 'src/components/Page'
 import {
   Box,
   Button,
@@ -87,7 +88,6 @@ const Form = ({className, ...rest}) => {
 
 
   const sendForm = async (values) => {
-    console.log('Dette er values ', values)
     setFirstName(values.firstName);
     const data = await axios.post(`https://europe-west1-signsafe-62b14.cloudfunctions.net/api/register/${id}`, {
       name: values.firstName + ' ' + values.lastName,
@@ -116,8 +116,8 @@ const Form = ({className, ...rest}) => {
 	}
 
   return (
-		<>
-		<Header />
+		<Page>
+			<Header />
     <Formik
       initialValues={{
         email: '',
@@ -182,12 +182,12 @@ const Form = ({className, ...rest}) => {
 						<CardContent>
 							{isAlertVisible && (
 								<Box mb={3}>
-									<Alert
-										onClose={() => setAlertVisible(false)}
-										severity="success"
-									>
-										{response.status === 200 ? `Takk ${firstName}! Vi har sikkert lagret din registrering ved ${response.data.visitInfo.orgName}.`: ''}
-									</Alert>
+								<Alert
+                  onClose={() => setAlertVisible(false)}
+                  severity={response.status ? 'success' : 'error'}
+                >
+                  {response.status === 200 ? `Takk for din tid ${firstName} :)` : 'Beklager, det har skjedd en feil. Din beskjed er ikke registrert'}
+                </Alert>
 								</Box>
 							)}
 							{isSubmitting ? (
@@ -431,7 +431,7 @@ const Form = ({className, ...rest}) => {
         </Box>
 			</Rodal>
 		</>
-		</>
+		</Page>
   );
 };
 

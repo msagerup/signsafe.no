@@ -13,8 +13,7 @@ import Page from 'src/components/Page';
 import Header from './Header';
 import CovidForm from './CovidForm';
 // Framer 
-import PageContainer from '../../../FramerMotion/covidRegPage/PageContainer';
-import Tester from '../../../FramerMotion/covidRegPage/tester'
+
 import Splash from '../../../FramerMotion/covidRegPage/Splash'
 import {RemoveScrollBar} from 'react-remove-scroll-bar';
 
@@ -44,16 +43,23 @@ const OverviewView = () => {
 	const [show, handleShow] = useState(false)
 	const [show2, handleShow2] = useState(false)
 
+	setTimeout(() => {
+		handleShow(true)
+	}, 2000);
+
+
 	const classes = useStyles();
   return (
-		
+		<>
     <div
       // className={classes.root}
-      title="SignSafe Covid-19"
+			title="SignSafe Covid-19"
+			style={{ overflow: 'hidden', position:'absolute'}}
 	>	
 			<Splash />
-			
     </div>
+		{show && <CovidForm />}
+		</>
   );
 };
 

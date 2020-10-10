@@ -15,8 +15,9 @@ const useStyles = makeStyles((theme) => ({
   wrapper: {
     display: 'flex',
     flex: '1 1 auto',
-    overflow: 'hidden',
-    paddingTop: 64,
+		overflow: 'hidden',
+		// Sett pading to for navbar use.
+    // paddingTop: 64,
     [theme.breakpoints.up('lg')]: {
 			// with left menu =256, no menu = 0
       paddingLeft: 0
@@ -40,7 +41,7 @@ const DashboardLayout = ({ children }) => {
 
   return (
     <div className={classes.root}>
-      <TopBar onMobileNavOpen={() => setMobileNavOpen(true)} />
+      {/* <TopBar onMobileNavOpen={() => setMobileNavOpen(true)} /> */}
       {/* <NavBar
         onMobileClose={() => setMobileNavOpen(false)}
         openMobile={isMobileNavOpen}

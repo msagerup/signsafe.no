@@ -14,22 +14,37 @@ import BarChartIcon from '@material-ui/icons/BarChart';
 import useAuth from 'src/hooks/useAuth';
 
 const useStyles = makeStyles((theme) => ({
-  root: {},
+  root: {
+		textAlign: 'left'
+	},
   action: {
     backgroundColor: theme.palette.common.white
 	},
 	splashText: {
 		fontSize: '2.4rem'
 	},
-
-	subText1 : {
-		fontSize: '1.5rem'
-	},
-
   image: {
-    width: '100%',
+    width: '200px',
     maxHeight: 400
-  }
+	},
+	subtext: {
+		marginTop: '15px',
+		// fontFamily: 'Roboto Mono, monospace',
+		// fontWeight: '200',
+		fontSize: '1.4rem',
+		letterSpacing: '3px',
+		fontFamily: 'Shadows Into Light, cursive'
+	},
+	splashName: {
+		fontSize: '4rem',
+		fontFamily: 'Shadows Into Light, cursive',
+		letterSpacing: '2px',
+		transform: 'rotate(3deg)',
+		transformOrigin: '0%',
+		background: 'linear-gradient(to right, #6D8E46 0%, #fff 60%)',
+		WebkitBackgroundClip: 'text',
+		WebkitTextFillColor: 'transparent'
+	}
 }));
 
 const Header = ({ className, ...rest }) => {
@@ -37,60 +52,35 @@ const Header = ({ className, ...rest }) => {
 	const { user } = useAuth();
 	let {id} = useParams()
 
+
+
   return (
     <div
       className={clsx(classes.root, className)}
       {...rest}
-    >
-      <Grid
-        alignItems="center"
-        container
-        justify="space-between"
-        spacing={3}
-      >
-        <Grid
-          item
-          md={6}
-          xs={12}
-        >
-          <Box
-						mt={5}
-					>
-						<Typography
-							className={classes.splashText}
-							color="textPrimary"
-						>
-							SignSafe - Covid19 Register.
-							{' '}
-						</Typography>
-					</Box>
-					<Box
-						mb={5}
-					>
-						<Typography
-							className = {classes.subText1}
-							color="textPrimary"
-						>
-							Velkommen til {id}
-						</Typography>
-						<Typography
-							variant="h4"
-							color="textPrimary"
-						>
-							Flott at du tar tiden til å registrere deg.
-						</Typography>
-					</Box>
-          
-        </Grid>
-        <Hidden smDown>
-          <Grid
-            item
-            md={6}
-          >
-            
-          </Grid>
-        </Hidden>
-      </Grid>
+		>
+			<Box
+				mt={5}
+			>
+				<img src="/static/images/small.png" alt="" className={classes.image}/>
+			</Box>
+			<Box
+				mt={5}
+			>
+				<Typography
+					color="primary"
+					variant="h2"
+					className={classes.subtext}
+				>
+					Velkommen til: 
+				</Typography>
+			</Box>
+			<Box
+			ml={1}
+			mb={3}
+			>
+				<div className={classes.splashName}>{id}</div>
+			</Box>
     </div>
   );
 };
