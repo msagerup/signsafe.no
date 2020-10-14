@@ -54,7 +54,7 @@ function PricingModal({ className, onClose, open, order, ...rest }) {
   const [statusActive, setStatus] = useState(true);
   const [modul, setModul] = useState(order.subTitle);
   
- console.log(order)
+
 
   return (    
     <Dialog onClose={onClose} open={open} maxWidth="md" fullWidth {...rest}>

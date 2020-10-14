@@ -42,14 +42,14 @@ const TopBar = ({ onMobileNavOpen }) => {
   return (
     <AppBar className={classes.root}>
       <Toolbar className={classes.toolbar}>
-        <Hidden lgUp>
+        {/* <Hidden lgUp>
           <IconButton
             color="inherit"
             onClick={onMobileNavOpen}
           >
             <MenuIcon />
           </IconButton>
-        </Hidden>
+        </Hidden> */}
         {/* <Hidden mdDown>
           <RouterLink to="/">
             <Logo />
@@ -68,7 +68,7 @@ const TopBar = ({ onMobileNavOpen }) => {
           underline="none"
           variant="body2"
         >
-          Home  
+          Om oss
         </Link>
       </Toolbar>
     </AppBar>
