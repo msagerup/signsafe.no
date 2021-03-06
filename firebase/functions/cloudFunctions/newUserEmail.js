@@ -6,8 +6,6 @@ const gmailPassword = functions.config().gmail.password;
 const mailTransport = nodemailer.createTransport({
   service: 'gmail',
   auth: {
-    user: 'magnus.sagerup@gmail.com',
-    pass: 'Stevneveien13',
   },
 });
 
