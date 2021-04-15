@@ -1,2 +1,2 @@
 # signsafe.no
-App to track covid.
+web-app to track covid.
